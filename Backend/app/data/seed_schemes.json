@@ -1,0 +1,339 @@
+[
+  {
+    "id": "1",
+    "code": "PMGC",
+    "name": "PMGC",
+    "department": "Ministry of Finance",
+    "source": "prototype_seed",
+    "source_note": "Prototype seed data for SIH demonstration. Not an official government eligibility digest.",
+    "description": "Financial support scheme for eligible applicants.",
+    "full_description": "A financial assistance scheme designed to support eligible individuals and small businesses with funding to help them get established or grow. Applications are reviewed on a rolling basis, with funds disbursed directly to the applicant's bank account.",
+    "deadline": "Open all year",
+    "categories": ["financial_assistance", "general"],
+    "target_groups": ["citizen", "entrepreneur", "self_employed"],
+    "locations": ["India"],
+    "benefits": [
+      "Financial assistance disbursed directly to your bank account",
+      "No collateral required"
+    ],
+    "eligibility_weights": {
+      "age_range": 20,
+      "citizenship": 20,
+      "income_limit": 35,
+      "occupation": 25
+    },
+    "constraints": [
+      {
+        "id": "age_range",
+        "type": "age_range",
+        "min": 18,
+        "max": 70,
+        "required": true,
+        "weight": 20,
+        "explanation": "Applicant should be 18 years or older"
+      },
+      {
+        "id": "citizenship",
+        "type": "equals",
+        "field": "citizenship",
+        "value": "IN",
+        "required": true,
+        "weight": 20,
+        "explanation": "Applicant should be an Indian citizen"
+      },
+      {
+        "id": "income_limit",
+        "type": "max_number",
+        "field": "annual_income",
+        "value": 800000,
+        "required": false,
+        "weight": 35,
+        "explanation": "Annual household income should be within the scheme threshold"
+      },
+      {
+        "id": "occupation",
+        "type": "in_set",
+        "field": "occupation_type",
+        "values": ["entrepreneur", "self_employed", "small_business", "micro_enterprise", "unemployed", "salaried", "student", "farmer"],
+        "required": false,
+        "weight": 25,
+        "explanation": "Open to citizens including entrepreneurs and other occupations"
+      }
+    ],
+    "documents": [
+      {"id": "aadhaar", "name": "Aadhaar Card", "weight": 25, "mandatory_for_eligibility": false, "proves": ["identity", "citizenship"], "note": "Proof of identity"},
+      {"id": "pan", "name": "PAN Card", "weight": 20, "mandatory_for_eligibility": false, "proves": ["identity"], "note": "Required for financial applications"},
+      {"id": "bank", "name": "Bank Passbook / Statement", "weight": 20, "mandatory_for_eligibility": false, "proves": ["bank_account"], "note": "For loan and subsidy disbursement"},
+      {"id": "income", "name": "Income Certificate", "weight": 35, "mandatory_for_eligibility": false, "proves": ["income_limit"], "note": "Issued by your local revenue authority"}
+    ]
+  },
+  {
+    "id": "2",
+    "code": "PM-KISAN",
+    "name": "PM-KISAN",
+    "department": "Ministry of Agriculture & Farmers Welfare",
+    "source": "prototype_seed",
+    "source_note": "Prototype seed data for SIH demonstration. Criteria are illustrative, not an official gazette extract.",
+    "description": "Income support scheme for eligible farmer families.",
+    "full_description": "Provides income support to landholding farmer families across the country, paid out in three equal instalments each year. Intended to help meet expenses related to agriculture and household needs.",
+    "deadline": "Open all year",
+    "categories": ["agriculture", "income_support"],
+    "target_groups": ["farmer"],
+    "locations": ["India"],
+    "benefits": [
+      "Direct cash transfer paid in three instalments annually",
+      "No repayment required — this is income support, not a loan"
+    ],
+    "eligibility_weights": {
+      "age_range": 10,
+      "citizenship": 20,
+      "farmer_occupation": 40,
+      "landholding": 30
+    },
+    "constraints": [
+      {
+        "id": "age_range",
+        "type": "age_range",
+        "min": 18,
+        "max": 90,
+        "required": true,
+        "weight": 10,
+        "explanation": "Applicant should be 18 years or older"
+      },
+      {
+        "id": "citizenship",
+        "type": "equals",
+        "field": "citizenship",
+        "value": "IN",
+        "required": true,
+        "weight": 20,
+        "explanation": "Applicant should be an Indian citizen"
+      },
+      {
+        "id": "farmer_occupation",
+        "type": "in_set",
+        "field": "occupation_type",
+        "values": ["farmer"],
+        "required": true,
+        "weight": 40,
+        "explanation": "Must be a landholding farmer or part of a farmer family"
+      },
+      {
+        "id": "landholding",
+        "type": "equals",
+        "field": "has_land",
+        "value": true,
+        "required": false,
+        "weight": 30,
+        "explanation": "Land records should be in the applicant's name"
+      }
+    ],
+    "documents": [
+      {"id": "aadhaar", "name": "Aadhaar Card", "weight": 40, "mandatory_for_eligibility": false, "proves": ["identity", "citizenship"], "note": "Aadhaar linked to a bank account"},
+      {"id": "bank", "name": "Bank Passbook / Statement", "weight": 30, "mandatory_for_eligibility": false, "proves": ["bank_account"], "note": "For direct benefit transfer"},
+      {"id": "land", "name": "Land records", "weight": 30, "mandatory_for_eligibility": false, "proves": ["landholding"], "note": "Land records in the applicant's name"}
+    ]
+  },
+  {
+    "id": "3",
+    "code": "MUDRA",
+    "name": "Mudra Yojana",
+    "department": "Ministry of Finance",
+    "source": "prototype_seed",
+    "source_note": "Prototype seed data for SIH demonstration. Criteria are illustrative.",
+    "description": "Financial assistance for micro and small businesses.",
+    "full_description": "Offers collateral-free loans to non-corporate, non-farm micro and small enterprises, split into three categories — Shishu, Kishor, and Tarun — based on the growth stage and funding needs of the business.",
+    "deadline": "Open all year",
+    "categories": ["credit", "micro_enterprise"],
+    "target_groups": ["entrepreneur", "self_employed", "micro_enterprise"],
+    "locations": ["India"],
+    "benefits": [
+      "Collateral-free loan",
+      "Available across three tiers depending on business size"
+    ],
+    "eligibility_weights": {
+      "age_range": 15,
+      "citizenship": 15,
+      "business_occupation": 40,
+      "existing_or_planned_business": 30
+    },
+    "constraints": [
+      {
+        "id": "age_range",
+        "type": "age_range",
+        "min": 18,
+        "max": 65,
+        "required": true,
+        "weight": 15,
+        "explanation": "Applicant should be between 18 and 65 years"
+      },
+      {
+        "id": "citizenship",
+        "type": "equals",
+        "field": "citizenship",
+        "value": "IN",
+        "required": true,
+        "weight": 15,
+        "explanation": "Applicant should be an Indian citizen"
+      },
+      {
+        "id": "business_occupation",
+        "type": "in_set",
+        "field": "occupation_type",
+        "values": ["entrepreneur", "self_employed", "small_business", "micro_enterprise"],
+        "required": true,
+        "weight": 40,
+        "explanation": "Non-farm income-generating micro or small business"
+      },
+      {
+        "id": "existing_or_planned_business",
+        "type": "equals",
+        "field": "is_entrepreneur",
+        "value": true,
+        "required": false,
+        "weight": 30,
+        "explanation": "Applicant is starting or running a micro/small enterprise"
+      }
+    ],
+    "documents": [
+      {"id": "aadhaar", "name": "Aadhaar Card", "weight": 20, "mandatory_for_eligibility": false, "proves": ["identity", "citizenship"], "note": "Proof of identity"},
+      {"id": "pan", "name": "PAN Card", "weight": 20, "mandatory_for_eligibility": false, "proves": ["identity"], "note": "Required for financial applications"},
+      {"id": "bank", "name": "Bank Passbook / Statement", "weight": 25, "mandatory_for_eligibility": false, "proves": ["bank_account"], "note": "For loan disbursement"},
+      {"id": "business", "name": "Business Registration / Udyam Certificate", "weight": 35, "mandatory_for_eligibility": false, "proves": ["existing_or_planned_business"], "note": "If applying as an existing business"}
+    ]
+  },
+  {
+    "id": "4",
+    "code": "STANDUP",
+    "name": "Stand-Up India",
+    "department": "Ministry of Finance",
+    "source": "prototype_seed",
+    "source_note": "Prototype seed data for SIH demonstration. Criteria are illustrative.",
+    "description": "Support for establishing new enterprises.",
+    "full_description": "Facilitates bank loans for setting up new enterprises in manufacturing, services, or trading, with at least one SC/ST or woman entrepreneur per bank branch encouraged to apply.",
+    "deadline": "Open all year",
+    "categories": ["credit", "entrepreneurship"],
+    "target_groups": ["woman", "sc", "st", "entrepreneur"],
+    "locations": ["India"],
+    "benefits": [
+      "Bank loan between ₹10 lakh and ₹1 crore",
+      "Support with the loan application process"
+    ],
+    "eligibility_weights": {
+      "age_range": 10,
+      "citizenship": 15,
+      "target_beneficiary": 45,
+      "entrepreneur": 30
+    },
+    "constraints": [
+      {
+        "id": "age_range",
+        "type": "age_range",
+        "min": 18,
+        "max": 65,
+        "required": true,
+        "weight": 10,
+        "explanation": "Applicant should be 18 years or older"
+      },
+      {
+        "id": "citizenship",
+        "type": "equals",
+        "field": "citizenship",
+        "value": "IN",
+        "required": true,
+        "weight": 15,
+        "explanation": "Applicant should be an Indian citizen"
+      },
+      {
+        "id": "target_beneficiary",
+        "type": "any_of",
+        "required": true,
+        "weight": 45,
+        "explanation": "Scheme targets women entrepreneurs and SC/ST entrepreneurs",
+        "clauses": [
+          {"type": "equals", "field": "gender", "value": "female"},
+          {"type": "in_set", "field": "category", "values": ["sc", "st"]}
+        ]
+      },
+      {
+        "id": "entrepreneur",
+        "type": "equals",
+        "field": "is_entrepreneur",
+        "value": true,
+        "required": false,
+        "weight": 30,
+        "explanation": "Applicant should be establishing or planning an enterprise"
+      }
+    ],
+    "documents": [
+      {"id": "aadhaar", "name": "Aadhaar Card", "weight": 20, "mandatory_for_eligibility": false, "proves": ["identity", "citizenship"], "note": "Proof of identity"},
+      {"id": "pan", "name": "PAN Card", "weight": 20, "mandatory_for_eligibility": false, "proves": ["identity"], "note": "Required for financial applications"},
+      {"id": "bank", "name": "Bank Passbook / Statement", "weight": 25, "mandatory_for_eligibility": false, "proves": ["bank_account"], "note": "For loan disbursement"},
+      {"id": "business", "name": "Business Registration / Udyam Certificate", "weight": 35, "mandatory_for_eligibility": false, "proves": ["entrepreneur"], "note": "Business or proposed enterprise documents"}
+    ]
+  },
+  {
+    "id": "5",
+    "code": "DEMO-NARROW",
+    "name": "Prototype High-Bar Credit Support",
+    "department": "Prototype catalogue",
+    "source": "prototype_seed",
+    "source_note": "Synthetic scheme used to demonstrate scores at or below the display threshold. Not a real government scheme.",
+    "description": "Narrow demonstration scheme with strict income and document requirements.",
+    "full_description": "Included only as prototype seed data so the Dual Score Engine can be demonstrated with below-threshold matches. It is not a real government scheme.",
+    "deadline": "Not applicable (prototype)",
+    "categories": ["demonstration"],
+    "target_groups": ["salaried"],
+    "locations": ["Goa"],
+    "benefits": ["Used only to test filtering"],
+    "eligibility_weights": {
+      "age_range": 10,
+      "location": 40,
+      "income_band": 30,
+      "occupation": 20
+    },
+    "constraints": [
+      {
+        "id": "age_range",
+        "type": "age_range",
+        "min": 21,
+        "max": 35,
+        "required": true,
+        "weight": 10,
+        "explanation": "Applicant should be between 21 and 35"
+      },
+      {
+        "id": "location",
+        "type": "in_set",
+        "field": "state",
+        "values": ["Goa"],
+        "required": true,
+        "weight": 40,
+        "explanation": "Available only in Goa in this prototype record"
+      },
+      {
+        "id": "income_band",
+        "type": "max_number",
+        "field": "annual_income",
+        "value": 120000,
+        "required": true,
+        "weight": 30,
+        "explanation": "Annual income must be at or below ₹1.2 lakh"
+      },
+      {
+        "id": "occupation",
+        "type": "in_set",
+        "field": "occupation_type",
+        "values": ["salaried"],
+        "required": true,
+        "weight": 20,
+        "explanation": "Targets salaried applicants in this prototype record"
+      }
+    ],
+    "documents": [
+      {"id": "aadhaar", "name": "Aadhaar Card", "weight": 20, "mandatory_for_eligibility": true, "proves": ["identity"], "note": "Mandatory identity proof in this prototype record"},
+      {"id": "income", "name": "Income Certificate", "weight": 50, "mandatory_for_eligibility": true, "proves": ["income_band"], "note": "Mandatory income evidence in this prototype record"},
+      {"id": "photo", "name": "Passport-size Photograph", "weight": 30, "mandatory_for_eligibility": false, "proves": [], "note": "Recent, colour"}
+    ]
+  }
+]

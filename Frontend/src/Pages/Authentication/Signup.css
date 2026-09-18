@@ -1,0 +1,540 @@
+
+/* =========================================
+   ESIRE — SIGNUP
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.signup-page {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(37, 99, 235, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(14, 165, 233, 0.07),
+      transparent 35%
+    ),
+    #f5f7fa;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  padding: 30px 20px;
+}
+
+
+/* =========================================
+   SIGNUP CARD
+========================================= */
+
+.signup-card {
+  position: relative;
+
+  width: 100%;
+  max-width: 440px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid rgba(18, 53, 91, 0.08);
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 60px rgba(18, 53, 91, 0.10),
+    0 4px 15px rgba(18, 53, 91, 0.04);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   TOP ACCENT LINE
+========================================= */
+
+.signup-line {
+  width: 100%;
+  height: 4px;
+
+   background: linear-gradient(
+    to right,
+    #ff9933 0%,
+    #ffb866 25%,
+    #ffffff 50%,
+    #8fce88 75%,
+    #138808 100%
+  );
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.signup-content {
+  padding: 34px 42px 32px;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.signup-brand {
+  text-align: center;
+
+  margin-bottom: 27px;
+}
+
+.signup-brand h1 {
+  color: #12355b;
+
+  font-size: 25px;
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+}
+
+.signup-brand p {
+  margin-top: 6px;
+
+  color: #7b8794;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.signup-heading {
+  margin-bottom: 23px;
+}
+
+.signup-heading h2 {
+  color: #172b4d;
+
+  font-size: 26px;
+  font-weight: 650;
+
+  letter-spacing: -0.6px;
+}
+
+.signup-heading p {
+  margin-top: 6px;
+
+  color: #7b8794;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.form-group label {
+  color: #334e68;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.form-group input {
+  width: 100%;
+  height: 46px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #172b4d;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: #9aa8b5;
+}
+
+.form-group input:hover {
+  border-color: #b8c6d4;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================
+   PHONE INPUT
+========================================= */
+
+.phone-input {
+  display: flex;
+  align-items: stretch;
+}
+
+.phone-prefix {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  padding: 0 12px;
+
+  border: 1px solid #d9e2ec;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+
+  background: #f5f7fa;
+  color: #334e68;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group .phone-input input {
+  border-radius: 0 8px 8px 0;
+}
+
+
+/* =========================================
+   LANGUAGE SELECT
+========================================= */
+
+.form-group select {
+  width: 100%;
+  height: 46px;
+
+  padding: 0 40px 0 14px;
+
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%237b8794' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+
+  color: #172b4d;
+
+  font-size: 14px;
+
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group select:hover {
+  border-color: #b8c6d4;
+}
+
+.form-group select:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.signup-submit {
+  width: 100%;
+  height: 48px;
+
+  margin-top: 5px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #12355b;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.signup-submit:hover {
+  background: #0d2947;
+
+  box-shadow:
+    0 8px 18px rgba(18, 53, 91, 0.18);
+
+  transform: translateY(-1px);
+}
+
+.signup-submit:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================
+   LOGIN SWITCH
+========================================= */
+
+.signup-switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+  margin-top: 23px;
+
+  color: #7b8794;
+
+  font-size: 13px;
+}
+
+.switch-button {
+  border: none;
+  background: none;
+
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  padding: 0;
+}
+
+.switch-button:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 500px) {
+  .signup-page {
+    padding: 20px 15px;
+  }
+
+  .signup-content {
+    padding: 30px 25px 27px;
+  }
+
+  .signup-heading h2 {
+    font-size: 24px;
+  }
+}
+
+
+/* =========================================
+   STEP PROGRESS
+========================================= */
+
+.signup-progress {
+  margin-bottom: 24px;
+}
+
+.signup-step-label {
+  display: block;
+  margin-bottom: 8px;
+
+  color: #7b8794;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.progress-track {
+  display: flex;
+  gap: 6px;
+}
+
+.progress-segment {
+  flex: 1;
+  height: 5px;
+
+  border-radius: 999px;
+
+  background: #e4e8ee;
+
+  transition: background 0.25s ease;
+}
+
+.progress-segment.filled {
+  background: #2563eb;
+}
+
+
+/* =========================================
+   TEXTAREA (About you — step 3)
+========================================= */
+
+.form-group textarea {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #172b4d;
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+
+  resize: vertical;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group textarea::placeholder {
+  color: #9aa8b5;
+}
+
+.form-group textarea:hover {
+  border-color: #b8c6d4;
+}
+
+.form-group textarea:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.signup-hint {
+  margin-top: 6px;
+
+  color: #9aa8b5;
+
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   STEP ACTIONS (Back + Continue side by side)
+========================================= */
+
+.signup-step-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.signup-step-actions .signup-back {
+  flex-shrink: 0;
+}
+
+.signup-step-actions .signup-submit {
+  flex: 1;
+}
+
+.signup-back {
+  height: 48px;
+
+  padding: 0 20px;
+
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #536273;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.signup-back:hover {
+  border-color: #b8c6d4;
+  color: #12355b;
+  background: #f5f7fa;
+}
+
+
+/* =========================================
+   DISABLED STATE
+========================================= */
+
+.signup-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.signup-submit:disabled:hover {
+  background: #12355b;
+  transform: none;
+  box-shadow: none;
+}

@@ -1,0 +1,259 @@
+/* =========================================
+   BACK LINK
+========================================= */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+
+  color: #536273;
+
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #12355b;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.scheme-show-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+
+  margin-bottom: 18px;
+}
+
+.scheme-show-department {
+  margin: 0 0 6px;
+
+  color: #8a95a3;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.scheme-show-header h1 {
+  margin: 0;
+
+  color: #12355b;
+
+  font-size: 26px;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+/* =========================================
+   DUAL SCORE (large variant, for the hero)
+========================================= */
+
+.dual-score.large {
+  flex-shrink: 0;
+
+  min-width: auto;
+  padding: 10px 20px;
+
+  border-radius: 22px;
+
+  font-size: 15px;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.scheme-show-description {
+  max-width: 720px;
+  margin: 0 0 32px;
+
+  color: #536273;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   GRID (Requirements + Benefits)
+========================================= */
+
+.scheme-show-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  margin-bottom: 20px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.scheme-show-card {
+  padding: 24px 26px;
+
+  background: #ffffff;
+  border: 1px solid #e4e8ee;
+  border-radius: 14px;
+
+  margin-bottom: 20px;
+}
+
+.scheme-show-grid .scheme-show-card {
+  margin-bottom: 0;
+}
+
+.scheme-show-card h2 {
+  margin: 0 0 16px;
+
+  color: #12355b;
+
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.scheme-show-card ul {
+  margin: 0;
+  padding-left: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scheme-show-card li {
+  color: #536273;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   DOCUMENTS NEEDED
+========================================= */
+
+.documents-needed-list {
+  margin-bottom: 16px !important;
+}
+
+.documents-link {
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.documents-link:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================
+   FOOTER (deadline + apply)
+========================================= */
+
+.scheme-show-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 22px 26px;
+
+  background: #eef3f8;
+  border: 1px solid #d7e3f0;
+  border-radius: 14px;
+}
+
+.scheme-deadline {
+  color: #12355b;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.scheme-apply-btn {
+  padding: 12px 26px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #12355b;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.scheme-apply-btn:hover:not(:disabled) {
+  background: #0d2947;
+  transform: translateY(-1px);
+}
+
+.scheme-apply-btn.applied,
+.scheme-apply-btn:disabled {
+  background: #cfd8e3;
+  color: #536273;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =========================================
+   NOT FOUND
+========================================= */
+
+.scheme-show-empty {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.scheme-show-empty p {
+  margin-bottom: 16px;
+
+  color: #536273;
+  font-size: 14px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+  .scheme-show-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scheme-show-header {
+    flex-direction: column;
+  }
+
+  .scheme-show-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,77 @@
+/* =========================================
+   FAQ LIST
+========================================= */
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin-bottom: 28px;
+}
+
+.faq-item {
+  padding: 20px 22px;
+
+  background: #ffffff;
+  border: 1px solid #e4e8ee;
+  border-radius: 12px;
+}
+
+.faq-item h3 {
+  margin: 0 0 8px;
+
+  color: #12355b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.faq-item p {
+  margin: 0;
+
+  color: #536273;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   CONTACT CARD
+========================================= */
+
+.contact-card {
+  max-width: 480px;
+
+  padding: 24px 26px;
+
+  background: #eef3f8;
+  border: 1px solid #d7e3f0;
+  border-radius: 14px;
+}
+
+.contact-card h3 {
+  margin: 0 0 6px;
+
+  color: #12355b;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.contact-card p {
+  margin: 0 0 16px;
+
+  color: #536273;
+  font-size: 13px;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-methods span {
+  color: #12355b;
+  font-size: 13px;
+  font-weight: 600;
+}

@@ -1,0 +1,674 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fa;
+  color: #12355b;
+}
+
+
+/* =========================================
+   MAIN DASHBOARD
+========================================= */
+
+.dashboard-container {
+  min-height: 100vh;
+  display: flex;
+  background: #f5f7fa;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+  width: 245px;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #12355b;
+  border-right: 1px solid #e4e8ee;
+
+  padding: 28px 16px 18px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 1000;
+}
+
+
+/* =========================================
+   SIDEBAR LOGO
+========================================= */
+
+.sidebar-logo {
+  padding: 0 12px;
+  margin-bottom: 38px;
+}
+
+.sidebar-logo h1 {
+  color: #ffffff;
+
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  margin: 10px;
+  margin-top: 0;
+}
+
+.sidebar-logo p {
+  margin-top: 6px;
+
+  color: #8a95a3;
+
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   SIDEBAR NAVIGATION
+========================================= */
+
+.sidebar-nav {
+  flex: 1;
+}
+
+.nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-section.secondary {
+  margin-top: 35px;
+}
+
+.nav-title {
+  padding: 0 12px;
+  margin-bottom: 9px;
+
+  color: #9aa4b2;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+
+/* =========================================
+   NAV ITEMS
+   (rendered as NavLink -> <a> now, same
+   visual rules apply identically)
+========================================= */
+
+.nav-item {
+  width: 100%;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+  padding: 0 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  text-align: left;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background: #f5f7fa;
+  color: #12355b;
+}
+
+.nav-item.active {
+  background: #eef3f8;
+  color: #12355b;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   NAV ICONS
+========================================= */
+
+.nav-icon {
+  width: 20px;
+
+  display: flex;
+  justify-content: center;
+
+  font-size: 17px;
+
+  color: #7d8997;
+}
+
+.nav-item.active .nav-icon {
+  color: #12355b;
+}
+
+
+/* =========================================
+   SIDEBAR LOGOUT
+   Pinned to the bottom via margin-top: auto
+   on the wrapper — reliable regardless of
+   how much nav content sits above it.
+========================================= */
+
+.sidebar-logout-wrap {
+  margin-top: auto;
+  padding-top: 15px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-logout-btn {
+  width: 100%;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 0 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  text-align: left;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.sidebar-logout-btn:hover {
+  background: rgba(224, 76, 62, 0.16);
+  color: #ff8a80;
+}
+
+.sidebar-logout-btn:hover .nav-icon {
+  color: #ff8a80;
+}
+
+
+/* =========================================
+   POPOVER MENUS (language dropdown)
+========================================= */
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.dashboard-main {
+  flex: 1;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.dashboard-header {
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-left: 245px;
+
+  padding: 0 40px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e4e8ee;
+
+  position: relative;
+  z-index: 10;
+}
+
+
+/* =========================================
+   HEADER CONTEXT
+========================================= */
+
+.header-context {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.header-context h2 {
+  font-size: 17px;
+  font-weight: 600;
+
+  margin-bottom: 0;
+
+  color: #12355b;
+}
+
+.header-context p {
+  font-size: 11px;
+
+  color: #8a95a3;
+}
+
+
+/* =========================================
+   HEADER ACTIONS
+========================================= */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+/* =========================================
+   LANGUAGE BUTTON + DROPDOWN
+========================================= */
+
+.language-switch {
+  position: relative;
+}
+
+.language-btn {
+  padding: 8px 13px;
+
+  border: 1px solid #e0e5eb;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #536273;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.language-btn:hover {
+  border-color: #cbd3dc;
+  color: #12355b;
+}
+
+.language-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+
+  width: 220px;
+  max-height: 320px;
+  overflow-y: auto;
+
+  background: #ffffff;
+  border: 1px solid #e4e8ee;
+  border-radius: 10px;
+
+  box-shadow: 0 12px 30px rgba(18, 53, 91, 0.18);
+
+  z-index: 1600;
+}
+
+.language-option {
+  display: block;
+  width: 100%;
+
+  padding: 9px 14px;
+
+  border: none;
+  background: transparent;
+
+  color: #334155;
+  font-size: 13px;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: 0.15s ease;
+}
+
+.language-option:hover {
+  background: #f5f7fa;
+}
+
+.language-option.selected {
+  background: #eef3f8;
+  color: #12355b;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   NOTIFICATION
+========================================= */
+
+.notification-btn {
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid #e0e5eb;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #536273;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.notification-btn:hover {
+  background: #f5f7fa;
+  color: #12355b;
+}
+
+
+/* =========================================
+   DASHBOARD OUTLET
+   Every page's content renders inside this —
+   it's the one place that clears the fixed
+   sidebar, so individual pages don't each
+   need their own margin-left copy.
+========================================= */
+
+.dashboard-outlet {
+  flex: 1;
+  margin-left: 245px;
+  padding: 38px 40px 50px;
+}
+
+
+/* =========================================
+   SCHEME DASHBOARD (Home page content)
+========================================= */
+
+.scheme-dashboard {
+  width: 100%;
+}
+
+
+/* =========================================
+   DASHBOARD TITLE
+   (reused by Home + My Schemes)
+========================================= */
+
+.dashboard-title {
+  margin-bottom: 28px;
+}
+
+.dashboard-title h1 {
+  color: #12355b;
+
+  font-size: 28px;
+  font-weight: 650;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.dashboard-title p {
+  margin-top: 7px;
+
+  color: #667085;
+  text-align: left;
+  font-size: 14px;
+}
+
+
+/* =========================================
+   SCHEME LIST
+========================================= */
+
+.scheme-list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+.scheme-list-empty {
+  padding: 32px 24px;
+
+  background: #ffffff;
+  border: 1px dashed #d9e2ec;
+  border-radius: 12px;
+
+  color: #667085;
+  font-size: 14px;
+  text-align: center;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.dashboard-footer {
+  min-height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-left: 245px;
+
+  padding: 0 40px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e4e8ee;
+
+  color: #8a95a3;
+
+  font-size: 11px;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+
+  gap: 22px;
+}
+
+.footer-links button,
+.footer-links a {
+  border: none;
+  background: transparent;
+
+  color: #7b8794;
+
+  font-size: 11px;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.footer-links button:hover,
+.footer-links a:hover {
+  color: #12355b;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .sidebar {
+    width: 210px;
+  }
+
+  .dashboard-header {
+    margin-left: 210px;
+    padding: 0 25px;
+  }
+
+  .dashboard-outlet {
+    margin-left: 210px;
+    padding: 32px 25px;
+  }
+
+  .dashboard-footer {
+    margin-left: 210px;
+    padding: 0 25px;
+  }
+}
+
+
+/* =========================================
+   TABLET / SMALL SCREEN
+========================================= */
+
+@media (max-width: 700px) {
+
+  .sidebar {
+    width: 70px;
+
+    padding: 25px 10px 15px;
+  }
+
+  .sidebar-logo p,
+  .sidebar-logo h1 {
+    display: none;
+  }
+
+  .sidebar-logo {
+    height: 25px;
+
+    margin-bottom: 30px;
+  }
+
+  .nav-title {
+    display: none;
+  }
+
+  .nav-item {
+    justify-content: center;
+
+    padding: 0;
+
+    font-size: 0;
+  }
+
+  .nav-icon {
+    font-size: 18px;
+  }
+
+  .sidebar-logout-btn {
+    justify-content: center;
+
+    padding: 0;
+
+    font-size: 0;
+  }
+
+  .dashboard-header {
+    margin-left: 70px;
+    padding: 0 25px;
+  }
+
+  .dashboard-outlet {
+    margin-left: 70px;
+    padding: 32px 25px;
+  }
+
+  .dashboard-title h1 {
+    font-size: 24px;
+  }
+
+  .dashboard-footer {
+    margin-left: 70px;
+    padding: 0 25px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 500px) {
+
+  .dashboard-outlet {
+    margin-left: 70px;
+    padding: 25px 18px;
+  }
+
+  .dashboard-header {
+    margin-left: 70px;
+
+    padding: 0 18px;
+  }
+
+  .dashboard-footer {
+    margin-left: 70px;
+
+    padding: 0 18px;
+  }
+
+  .language-btn {
+    font-size: 12px;
+  }
+
+  .footer-links {
+    gap: 12px;
+  }
+
+  .language-popover {
+    width: 180px;
+  }
+}

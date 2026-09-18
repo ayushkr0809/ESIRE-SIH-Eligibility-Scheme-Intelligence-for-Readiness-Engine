@@ -1,0 +1,592 @@
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fa;
+  color: #1f2937;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+/* =========================================
+   LANDING PAGE
+========================================= */
+
+.landing-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  width: 100%;
+  min-height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 7%;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  border-bottom: 1px solid #e5e7eb;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  line-height: 1;
+  cursor: pointer;
+
+  min-width: 0;
+}
+
+.logo h1 {
+  margin: 0;
+
+  color: #12355b;
+
+  font-size: 28px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+  line-height: 1;
+}
+
+.logo p {
+  margin-top: 5px;
+
+  color: #667085;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navbar {
+  display: flex;
+  align-items: center;
+
+  gap: 32px;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+
+  color: #374151;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  padding: 8px 2px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.navbar a:hover {
+  color: #12355b;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   LOGIN BUTTON
+========================================= */
+
+.landing-lang {
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #12355b;
+  font-size: 13px;
+}
+
+.navbar .login-nav {
+  padding: 10px 20px;
+
+  background: #12355b;
+  color: #ffffff;
+
+  border-radius: 5px;
+}
+
+.navbar .login-nav:hover {
+  background: #0d2947;
+  color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   TRICOLOR HEADER ACCENT
+========================================= */
+
+.header::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background: linear-gradient(
+    to right,
+    #ff9933 0%,
+    #ffb866 25%,
+    #ffffff 50%,
+    #8fce88 75%,
+    #138808 100%
+  );
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+  position: relative;
+
+  width: 100%;
+  min-height: 570px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 25px 20px;
+
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f5f8fc 55%,
+    #edf3f8 100%
+  );
+
+  overflow: hidden;
+}
+
+
+
+/* =========================================
+   HERO TEXT
+========================================= */
+
+.hero h1 {
+  max-width: 850px;
+
+  margin-bottom: 15px;
+
+  color: #12355b;
+
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 800;
+
+  line-height: 1.1;
+}
+
+.hero p {
+  max-width: 650px;
+
+  margin-bottom: 30px;
+
+  color: #5b6573;
+
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   EXPLORE BUTTON
+========================================= */
+
+.explore-btn {
+  border: none;
+
+  padding: 14px 30px;
+
+  border-radius: 5px;
+
+  background: #12355b;
+  color: #ffffff;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 15px rgba(18, 53, 91, 0.2);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.explore-btn:hover {
+  background: #0d2947;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(18, 53, 91, 0.25);
+}
+
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.features {
+  width: 100%;
+
+  padding: 75px 7%;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+
+  background: #f5f7fa;
+}
+
+
+/* =========================================
+   FEATURE CARD
+========================================= */
+
+.feature-card {
+  background: #ffffff;
+
+  padding: 32px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #12355b;
+  border-width: 1px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.09);
+}
+
+.feature-card h2 {
+  margin-bottom: 12px;
+
+  color: #12355b;
+
+  font-size: 21px;
+}
+
+.feature-card p {
+  color: #667085;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+  width: 100%;
+
+  margin-top: 30px;
+
+  background: #102a43;
+  color: #ffffff;
+}
+
+
+/* =========================================
+   FOOTER CONTENT
+========================================= */
+
+.footer-content {
+  width: 100%;
+
+  padding: 60px 7%;
+
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+
+  gap: 50px;
+}
+
+
+/* =========================================
+   FOOTER BRAND
+========================================= */
+
+.footer-brand h2 {
+  margin-bottom: 15px;
+  text-align: center;
+  margin-right: 10%;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.footer-brand p {
+  max-width: 330px;
+
+  color: #cbd5e1;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   FOOTER LINKS
+========================================= */
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.footer-section h3 {
+  margin-bottom: 7px;
+
+  color: #ffffff;
+
+  font-size: 16px;
+}
+
+.footer-section a {
+  color: #cbd5e1;
+
+  font-size: 14px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footer-section a:hover {
+  color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   FOOTER BOTTOM
+========================================= */
+
+.footer-bottom {
+  width: 100%;
+
+  padding: 20px 7%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+  color: #aebdcc;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .header {
+    padding: 10px 30px;
+  }
+
+  .navbar {
+    gap: 18px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+
+    padding: 60px 30px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+
+    padding: 50px 30px;
+  }
+
+  .footer-bottom {
+    padding: 20px 30px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .header {
+    min-height: auto;
+
+    padding: 18px 20px;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .logo {
+    align-items: center;
+
+    text-align: center;
+  }
+
+  .logo h1 {
+    font-size: 26px;
+  }
+
+  .logo p {
+    font-size: 8px;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 12px 15px;
+  }
+
+  .navbar a {
+    font-size: 14px;
+  }
+
+  .navbar .login-nav {
+    padding: 9px 17px;
+  }
+
+  .hero {
+    min-height: 500px;
+
+    padding: 60px 20px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+    
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+
+    padding: 50px 20px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+
+    padding: 45px 25px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+
+    padding: 20px 25px;
+  }
+}
+

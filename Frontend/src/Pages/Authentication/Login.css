@@ -1,0 +1,385 @@
+
+/* =========================================
+   ESIRE — LOGIN
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.auth-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(37, 99, 235, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(14, 165, 233, 0.07),
+      transparent 35%
+    ),
+    #f5f7fa;
+
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 30px 20px;
+}
+
+
+/* =========================================
+   AUTH CARD
+========================================= */
+
+.auth-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid rgba(18, 53, 91, 0.08);
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 60px rgba(18, 53, 91, 0.10),
+    0 4px 15px rgba(18, 53, 91, 0.04);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   TOP ACCENT LINE
+========================================= */
+
+.auth-line {
+  width: 100%;
+  height: 4px;
+
+   background: linear-gradient(
+    to right,
+    #ff9933 0%,
+    #ffb866 25%,
+    #ffffff 50%,
+    #8fce88 75%,
+    #138808 100%
+  );
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.auth-content {
+  padding: 38px 42px 34px;
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.auth-brand {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.auth-brand h1 {
+  color: #12355b;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.auth-brand p {
+  margin-top: 7px;
+
+  color: #7b8794;
+  font-size: 13px;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.auth-heading {
+  margin-bottom: 28px;
+}
+
+.auth-heading h2 {
+  color: #172b4d;
+
+  font-size: 28px;
+  font-weight: 650;
+
+  letter-spacing: -0.7px;
+}
+
+.auth-heading p {
+  margin-top: 7px;
+
+  color: #7b8794;
+  font-size: 14px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #334e68;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.form-group input {
+  width: 100%;
+  height: 48px;
+
+  padding: 0 14px;
+
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #172b4d;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: #9aa8b5;
+}
+
+.form-group input:hover {
+  border-color: #b8c6d4;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================
+   PHONE INPUT
+========================================= */
+
+.phone-input {
+  display: flex;
+  align-items: stretch;
+}
+
+.phone-prefix {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  padding: 0 12px;
+
+  border: 1px solid #d9e2ec;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+
+  background: #f5f7fa;
+  color: #334e68;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group .phone-input input {
+  border-radius: 0 8px 8px 0;
+}
+
+
+/* =========================================
+   OTP INPUT
+========================================= */
+
+.otp-inputs {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.form-group .otp-box {
+  width: 100%;
+  max-width: 48px;
+  height: 54px;
+
+  padding: 0;
+
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.otp-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+
+/* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+.auth-submit {
+  width: 100%;
+  height: 48px;
+
+  margin-top: 4px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #12355b;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.auth-submit:hover {
+  background: #0d2947;
+
+  box-shadow:
+    0 8px 18px rgba(18, 53, 91, 0.18);
+
+  transform: translateY(-1px);
+}
+
+.auth-submit:active {
+  transform: translateY(0);
+}
+
+.auth-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.auth-submit:disabled:hover {
+  background: #12355b;
+  transform: none;
+  box-shadow: none;
+}
+
+
+/* =========================================
+   LOGIN / SIGNUP SWITCH
+========================================= */
+
+.auth-switch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  margin-top: 27px;
+
+  color: #7b8794;
+  font-size: 13px;
+}
+
+.switch-button {
+  border: none;
+  background: none;
+
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  padding: 0;
+}
+
+.switch-button:hover {
+  text-decoration: underline;
+}
+
+.switch-button:disabled {
+  color: #9aa8b5;
+  cursor: not-allowed;
+}
+
+.switch-button:disabled:hover {
+  text-decoration: none;
+}
+
+.auth-error {
+  margin: 0 0 12px;
+  color: #b42318;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 500px) {
+  .auth-page {
+    padding: 20px 15px;
+  }
+
+  .auth-content {
+    padding: 32px 25px 28px;
+  }
+
+  .auth-heading h2 {
+    font-size: 25px;
+  }
+}

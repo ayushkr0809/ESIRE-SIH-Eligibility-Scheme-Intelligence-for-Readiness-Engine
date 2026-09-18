@@ -1,0 +1,174 @@
+/* =========================================
+   SETTINGS CARD
+========================================= */
+
+.settings-card {
+  max-width: 640px;
+
+  background: #ffffff;
+  border: 1px solid #e4e8ee;
+  border-radius: 16px;
+
+  padding: 4px 28px;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 22px 0;
+
+  border-bottom: 1px solid #eef1f4;
+}
+
+.settings-row:last-of-type {
+  border-bottom: none;
+}
+
+.settings-row h3 {
+  margin: 0 0 4px;
+
+  color: #12355b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.settings-row p {
+  margin: 0;
+
+  color: #667085;
+  font-size: 12px;
+  max-width: 360px;
+}
+
+
+/* =========================================
+   LANGUAGE SELECT
+========================================= */
+
+.settings-select {
+  flex-shrink: 0;
+  height: 42px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d9e2ec;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #172b4d;
+
+  font-size: 13px;
+
+  outline: none;
+  cursor: pointer;
+}
+
+.settings-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================
+   TOGGLE SWITCH
+========================================= */
+
+.settings-toggle {
+  flex-shrink: 0;
+  width: 46px;
+  height: 26px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #d9e2ec;
+
+  position: relative;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.settings-toggle.on {
+  background: #2563eb;
+}
+
+.toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+  transition: transform 0.2s ease;
+}
+
+.settings-toggle.on .toggle-knob {
+  transform: translateX(20px);
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.settings-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding-top: 22px;
+}
+
+.settings-save {
+  padding: 11px 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #12355b;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.settings-save:hover {
+  background: #0d2947;
+}
+
+.settings-saved-note {
+  color: #2e7d32;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+  .settings-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .settings-select {
+    width: 100%;
+  }
+}
