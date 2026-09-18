@@ -1,10 +1,8 @@
-# SIH-ESIRE
+# ESIRE — Eligibility & Scheme Intelligence for Readiness Engine
 
-## Entrepreneur Scheme Intelligence & Readiness Engine
+**ESIRE** is an AI-powered platform designed to help users discover relevant government schemes, understand eligibility requirements, and determine their readiness to apply.
 
-SIH-ESIRE is an AI-driven platform designed to help entrepreneurs and marginalized communities discover relevant government schemes, understand eligibility requirements, and identify schemes that best match their individual profiles.
-
-The proposed system combines **Large Language Models (LLMs)**, **knowledge graphs**, **dual-score relevance matching**, and a **symbolic rule engine** to provide recommendations that are intelligent, relevant, verifiable, and explainable.
+The platform combines **LLM-based intelligence, personalized scheme matching, document readiness, and rule-based eligibility verification** to simplify access to government schemes.
 
 > 🚧 **Project Status:** Under Active Development — Smart India Hackathon (SIH)
 
@@ -12,230 +10,229 @@ The proposed system combines **Large Language Models (LLMs)**, **knowledge graph
 
 ## 🎯 Problem
 
-Entrepreneurs often face difficulties when trying to find and apply for government schemes because:
+Finding and applying for government schemes can be difficult because:
 
-* There are a large number of schemes available.
-* Eligibility criteria can be complex and difficult to interpret.
-* Different schemes have different requirements.
-* Users may struggle to identify which schemes are actually relevant to them.
-* Government scheme information can be difficult to understand.
-* Language barriers can make scheme information less accessible.
+* There are many schemes with different eligibility criteria.
+* Requirements can be complex and difficult to understand.
+* Users may not know which schemes are relevant to their situation.
+* Required documents vary between schemes.
+* Language barriers can make information less accessible.
+* Users often have to search through multiple sources to find suitable schemes.
 
-SIH-ESIRE aims to simplify this process by analyzing an entrepreneur's profile and intelligently matching it with suitable government schemes.
+ESIRE aims to bring this process into a single, easy-to-use platform.
 
 ---
 
-## 💡 Proposed Solution
+## 💡 Solution
 
-SIH-ESIRE uses a **Neuro-Symbolic AI architecture** that combines the flexibility of neural models with the reliability of deterministic rule-based reasoning.
+ESIRE takes information about a user and analyzes it against available government schemes.
 
-The system is designed around the following pipeline:
+### Core workflow
 
 ```text
-User Profile
-     │
-     ▼
-┌──────────────────────┐
-│   Profile Analysis   │
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│    LLM Intelligence  │
-│  Scheme Understanding│
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│    Dual-Score        │
-│  Relevance Filtering │
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│  Symbolic Rule       │
-│      Engine          │
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│ Verified & Relevant  │
-│ Scheme Recommendations│
-└──────────────────────┘
+              User
+                │
+                ▼
+       ┌─────────────────┐
+       │  User Profile   │
+       │ & Requirements  │
+       └────────┬────────┘
+                │
+                ▼
+       ┌─────────────────┐
+       │  AI / LLM Layer │
+       │ Profile Analysis│
+       └────────┬────────┘
+                │
+                ▼
+       ┌─────────────────┐
+       │ Scheme Matching │
+       │ & Scoring       │
+       └────────┬────────┘
+                │
+                ▼
+       ┌─────────────────┐
+       │ Eligibility &   │
+       │ Document Check  │
+       └────────┬────────┘
+                │
+                ▼
+       ┌─────────────────┐
+       │ Personalized    │
+       │ Recommendations │
+       └─────────────────┘
 ```
 
 ---
 
-## 🧠 Neuro-Symbolic Architecture
+# 🧠 AI & Recommendation System
 
-### 1. LLM-Based Intelligence
+ESIRE is designed around a **neuro-symbolic approach**, combining AI-based understanding with deterministic verification.
 
-The neural layer uses Large Language Models to understand unstructured and natural-language information.
+### LLM Intelligence
 
-It is intended to handle:
+The LLM layer can be used to understand:
 
+* User-provided information
 * Scheme descriptions
 * Eligibility requirements
-* User profiles
-* Natural-language queries
-* Scheme benefits
+* Benefits
 * Required documents
-* Multilingual text
+* Natural-language queries
+* Multilingual input
 
-The LLM layer helps identify potentially relevant schemes based on semantic understanding rather than relying only on keyword matching.
+For the prototype, **Ollama** can be used to run local language models.
 
----
+### Scheme Matching
 
-### 2. Dual-Score Recommendation
+Candidate schemes can be evaluated using multiple matching signals, including:
 
-Potentially relevant schemes are evaluated using a dual-score mechanism.
-
-The scoring layer is intended to consider factors such as:
-
+* User profile compatibility
+* Scheme eligibility requirements
 * Semantic relevance
-* User-profile suitability
-* Scheme requirements
-* Other relevant matching signals
+* Location
+* Business or applicant category
+* Required documents
 
-This helps reduce irrelevant recommendations before they reach the final verification stage.
+The resulting scores help identify schemes that are potentially relevant to the user.
 
----
+### Rule-Based Verification
 
-### 3. Symbolic Rule Engine
+After scheme matching, explicit eligibility conditions can be checked using deterministic rules.
 
-The shortlisted schemes are passed through a deterministic rule-based verification layer.
-
-The rule engine checks explicit eligibility conditions such as:
+Examples include:
 
 * Age
 * Income
 * Location
+* Applicant category
 * Business type
-* Entrepreneur category
-* Other scheme-specific requirements
+* Other scheme-specific conditions
 
-Unlike an LLM, the symbolic layer follows predefined rules and conditions, providing a more deterministic eligibility verification mechanism.
+This helps separate **AI-based recommendation** from **rule-based eligibility verification**.
 
 ---
 
-## 🔗 Knowledge Graph
+# 📄 Document Readiness
 
-**Neo4j** is planned as the knowledge graph layer of SIH-ESIRE.
+ESIRE also considers the documents required by schemes.
 
-Government schemes contain many relationships between different entities. Neo4j can represent these relationships in a graph structure instead of treating each scheme as an isolated record.
+The system can identify:
 
-Example:
-
-```text
-Entrepreneur
-     │
-     ├──── belongs_to ────► Entrepreneur Category
-     │
-     ├──── located_in ─────► State
-     │
-     └──── operates ───────► Business Type
-                                  │
-                                  ▼
-                               Scheme
-                                  │
-                    ┌─────────────┼─────────────┐
-                    │             │             │
-                    ▼             ▼             ▼
-                 provides      requires     available_in
-                  Benefit      Document         State
-```
-
-This knowledge graph is intended to help the system understand relationships between:
-
-* Entrepreneurs
-* Government schemes
-* Eligibility criteria
-* Business types
-* Locations
-* Benefits
 * Required documents
-* Entrepreneur categories
+* Documents already provided
+* Missing documents
+* Application readiness
+
+A user can therefore understand not only **which schemes may be suitable**, but also **what is still required to apply**.
 
 ---
 
-## 🗄️ Data Architecture
+# 🌐 Multilingual Support
 
-SIH-ESIRE is planned to use **PostgreSQL and Neo4j for different purposes**.
+ESIRE is designed with accessibility in mind.
+
+The prototype supports a multilingual interface, with **English, Hindi, and Manipuri** planned/supported across relevant user-facing components.
+
+Users can interact with the platform through a language selected manually or based on available browser language information.
+
+---
+
+# 🗄️ Data Architecture
+
+ESIRE uses different data technologies for different purposes.
 
 ### PostgreSQL
 
-PostgreSQL will primarily handle structured and transactional application data such as:
+Used for structured application data such as:
 
-* User accounts
-* User profiles
-* Authentication information
+* Users
+* Profiles
+* Authentication
 * Applications
-* User interactions
-* Other structured application data
+* Other transactional data
+
+### MongoDB
+
+Can be used for flexible or document-oriented data where appropriate.
 
 ### Neo4j
 
-Neo4j will be used for the **scheme knowledge graph**, representing relationships between:
+Planned for the scheme knowledge graph.
 
-* Schemes
-* Eligibility criteria
-* Entrepreneur categories
-* Business types
-* Locations
-* Benefits
-* Documents
-* Other scheme-related entities
+The graph can represent relationships between:
 
-This separation allows each database to handle the type of data it is best suited for.
+```text
+User
+ │
+ ├── belongs to ──► Category
+ │
+ ├── located in ──► State
+ │
+ └── operates ────► Business Type
+                         │
+                         ▼
+                       Scheme
+                         │
+              ┌──────────┼──────────┐
+              ▼          ▼          ▼
+           Benefit    Document   Eligibility
+```
+
+This allows schemes and their relationships to be represented as connected entities rather than isolated records.
 
 ---
 
-# 🏗️ Proposed System Architecture
+# 🏗️ System Architecture
 
 ```text
-                         ┌─────────────────┐
-                         │      USER       │
-                         └────────┬────────┘
-                                  │
-                                  ▼
-                         ┌─────────────────┐
-                         │ React Frontend  │
-                         └────────┬────────┘
-                                  │
-                                  ▼
-                         ┌─────────────────┐
-                         │ FastAPI Backend │
-                         └────────┬────────┘
-                                  │
-             ┌────────────────────┼────────────────────┐
-             │                    │                    │
-             ▼                    ▼                    ▼
-      ┌─────────────┐      ┌─────────────┐      ┌─────────────┐
-      │ PostgreSQL  │      │    Neo4j    │      │ LLM Layer   │
-      │             │      │ Knowledge   │      │             │
-      │ User &      │      │   Graph     │      │ Scheme &    │
-      │ Application │      │             │      │ Profile     │
-      │ Data        │      │             │      │ Intelligence│
-      └─────────────┘      └──────┬──────┘      └──────┬──────┘
-                                  │                    │
-                                  └──────────┬─────────┘
-                                             ▼
-                                    ┌─────────────────┐
-                                    │   Dual-Score    │
-                                    │     Layer       │
-                                    └────────┬────────┘
+                    ┌───────────────┐
+                    │     User      │
+                    └───────┬───────┘
+                            │
+                            ▼
+                    ┌───────────────┐
+                    │ React + Vite  │
+                    │   Frontend    │
+                    └───────┬───────┘
+                            │
+                            ▼
+                    ┌───────────────┐
+                    │    FastAPI    │
+                    │    Backend    │
+                    └───────┬───────┘
+                            │
+          ┌─────────────────┼─────────────────┐
+          │                 │                 │
+          ▼                 ▼                 ▼
+   ┌────────────┐    ┌────────────┐    ┌────────────┐
+   │ PostgreSQL │    │  MongoDB   │    │   Neo4j    │
+   │ Structured │    │ Flexible   │    │ Knowledge  │
+   │    Data    │    │    Data    │    │   Graph    │
+   └────────────┘    └────────────┘    └─────┬──────┘
                                              │
                                              ▼
-                                    ┌─────────────────┐
-                                    │ Symbolic Rule   │
-                                    │     Engine      │
-                                    └────────┬────────┘
-                                             │
-                                             ▼
-                                    ┌─────────────────┐
-                                    │     Final       │
-                                    │ Recommendations │
-                                    └─────────────────┘
+                                    ┌────────────────┐
+                                    │  AI / Ollama   │
+                                    │ Intelligence   │
+                                    └───────┬────────┘
+                                            │
+                                            ▼
+                                    ┌────────────────┐
+                                    │ Matching &     │
+                                    │ Scoring Engine │
+                                    └───────┬────────┘
+                                            │
+                                            ▼
+                                    ┌────────────────┐
+                                    │ Rule / Z3      │
+                                    │ Verification   │
+                                    └───────┬────────┘
+                                            │
+                                            ▼
+                                    ┌────────────────┐
+                                    │ Recommendations│
+                                    └────────────────┘
 ```
 
 ---
@@ -244,112 +241,147 @@ This separation allows each database to handle the type of data it is best suite
 
 ## Frontend
 
-The project is currently focused on frontend development.
-
-### Implemented / In Progress
+### Implemented
 
 * Landing page
 * Login interface
 * Signup interface
 * Dashboard
-* Scheme listing interface
-* Scheme information display
-* Scheme requirements presentation
-* User-oriented navigation
+* Profile interface
+* Scheme listing
+* Scheme details
+* Documents interface
+* My Schemes interface
+* Settings
+* Help section
+* Protected routes
+* Authentication context
+* Multilingual UI structure
 * React component architecture
-* Responsive UI development
+* Responsive UI work
+
+### Technology
+
+* React
+* Vite
+* JavaScript
+* CSS
+* React Router
+
+---
 
 ## Backend
 
-Backend development is planned and will be added progressively.
+The FastAPI backend is currently being developed.
 
-Planned technologies:
+Current backend structure includes:
+
+* Authentication
+* User management
+* Scheme APIs
+* Document APIs
+* System APIs
+* Database modules
+* Matching services
+* Scoring services
+* Ollama integration
+* OTP service
+* Z3 rule engine
+* Scheme catalog
+* Document extraction
+
+### Technology
 
 * Python
 * FastAPI
 * SQLAlchemy
 * PostgreSQL
+* MongoDB
 * Neo4j
-* JWT Authentication
-
-## AI Layer
-
-Planned AI functionality includes:
-
-* LLM-based scheme understanding
-* User-profile understanding
-* Semantic scheme matching
-* Dual-score recommendation mechanism
-* Multilingual support
-
-## Verification Layer
-
-Planned verification functionality includes:
-
-* Symbolic rule engine
-* Deterministic eligibility verification
-* Explainable eligibility results
-
----
-
-# 🛠️ Technology Stack
-
-| Layer               | Technologies                  |
-| ------------------- | ----------------------------- |
-| Frontend            | React, Vite, JavaScript, CSS  |
-| Backend             | Python, FastAPI, SQLAlchemy   |
-| Relational Database | PostgreSQL                    |
-| Knowledge Graph     | Neo4j                         |
-| AI / NLP            | LLMs, NLP, Neuro-Symbolic AI  |
-| Recommendation      | Dual-Score Relevance Matching |
-| Verification        | Symbolic Rule Engine          |
-| Authentication      | JWT                           |
+* JWT
+* Ollama
+* Z3
 
 ---
 
 # 📁 Project Structure
 
-The repository currently contains the frontend. Backend and AI components will be added as development progresses.
-
 ```text
-SIH-ESIRE/
+ESIRE/
 │
-├── frontend/
+├── Backend/
+│   ├── app/
+│   │   ├── data/
+│   │   │   └── seed_schemes.json
+│   │   │
+│   │   ├── db/
+│   │   │   ├── mongo.py
+│   │   │   ├── neo4j_db.py
+│   │   │   └── postgres.py
+│   │   │
+│   │   ├── routers/
+│   │   │   ├── auth.py
+│   │   │   ├── documents.py
+│   │   │   ├── schemes.py
+│   │   │   ├── system.py
+│   │   │   └── users.py
+│   │   │
+│   │   ├── services/
+│   │   │   ├── catalog.py
+│   │   │   ├── extractor.py
+│   │   │   ├── matching.py
+│   │   │   ├── ollama.py
+│   │   │   ├── otp.py
+│   │   │   ├── scoring.py
+│   │   │   └── z3_engine.py
+│   │   │
+│   │   ├── config.py
+│   │   ├── deps.py
+│   │   ├── main.py
+│   │   ├── models.py
+│   │   ├── schemas.py
+│   │   └── security.py
+│   │
+│   ├── tests/
+│   ├── requirements.txt
+│   └── pytest.ini
+│
+├── Frontend/
 │   ├── public/
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   └── ...
+│   │   ├── Components/
+│   │   ├── Pages/
+│   │   ├── api/
+│   │   ├── auth/
+│   │   ├── i18n/
+│   │   ├── App.jsx
+│   │   └── main.jsx
 │   │
 │   ├── package.json
 │   ├── package-lock.json
-│   └── ...
+│   └── vite.config.js
 │
-├── README.md
+├── .env.example
 ├── .gitignore
-└── ...
+├── docker-compose.yml
+└── README.md
 ```
 
-The final project structure is expected to evolve into:
+---
 
-```text
-SIH-ESIRE/
-│
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   └── package-lock.json
-│
-├── backend/
-│   ├── app/
-│   ├── requirements.txt
-│   └── ...
-│
-├── README.md
-├── .gitignore
-└── ...
-```
+# 🛠️ Technology Stack
+
+| Layer            | Technologies                 |
+| ---------------- | ---------------------------- |
+| Frontend         | React, Vite, JavaScript, CSS |
+| Backend          | Python, FastAPI, SQLAlchemy  |
+| Database         | PostgreSQL, MongoDB          |
+| Knowledge Graph  | Neo4j                        |
+| AI               | Ollama, LLMs                 |
+| Recommendation   | Profile Matching & Scoring   |
+| Verification     | Rule Engine, Z3              |
+| Authentication   | JWT                          |
+| Containerization | Docker                       |
 
 ---
 
@@ -357,111 +389,104 @@ SIH-ESIRE/
 
 ## Prerequisites
 
-Make sure the following are installed:
+Install:
 
-* [Node.js](https://nodejs.org/)
+* Node.js
 * npm
+* Python
 * Git
+* PostgreSQL
+* Docker *(optional)*
+* Ollama *(required for local LLM functionality)*
 
 ---
 
-## 1. Clone the Repository
+## Clone the Repository
 
 ```bash
-git clone <repository-url>
-```
+git clone https://github.com/ayushkr0809/ESIRE-SIH-Eligibility-Scheme-Intelligence-for-Readiness-Engine.git
 
-Move into the project directory:
-
-```bash
-cd SIH-ESIRE
-```
-
----
-
-## 2. Navigate to the Frontend
-
-```bash
-cd frontend
+cd ESIRE-SIH-Eligibility-Scheme-Intelligence-for-Readiness-Engine
 ```
 
 ---
 
-## 3. Install Dependencies
-
-Install all frontend dependencies listed in `package.json`:
+## Frontend Setup
 
 ```bash
+cd Frontend
 npm install
-```
-
-This automatically installs React, React DOM, React Router, and other project dependencies.
-
----
-
-## 4. Start the Development Server
-
-```bash
 npm run dev
 ```
 
-Vite will display the local development server URL in the terminal.
-
-Usually:
+The Vite development server will provide a local URL, usually:
 
 ```text
 http://localhost:5173
 ```
 
-Open the displayed URL in your browser.
-
 ---
 
-# 👥 Development Setup for Team Members
+## Backend Setup
 
-If you are contributing to SIH-ESIRE:
-
-### Clone the repository
+From the project root:
 
 ```bash
-git clone <repository-url>
-cd SIH-ESIRE
+cd Backend
 ```
 
-### Install frontend dependencies
+Create a virtual environment:
 
 ```bash
-cd frontend
-npm install
+python -m venv venv
 ```
 
-### Run the frontend
+Activate it on Windows:
+
+```powershell
+venv\Scripts\activate
+```
+
+Install dependencies:
 
 ```bash
-npm run dev
+pip install -r requirements.txt
 ```
 
-You do **not** need to manually install individual React packages. The dependencies are defined in `package.json`, and `npm install` installs them automatically.
+Run FastAPI:
 
-> **Note:** The backend setup, database configuration, and AI services will be documented here once those components are implemented.
+```bash
+uvicorn app.main:app --reload
+```
+
+The API will normally be available at:
+
+```text
+http://127.0.0.1:8000
+```
+
+FastAPI documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
 
 ---
 
 # 🔐 Environment Variables
 
-Environment variables will be introduced when backend services and external APIs are integrated.
+Sensitive configuration should **never be committed** to the repository.
 
-Sensitive information such as:
+Examples include:
 
 * Database credentials
 * JWT secrets
-* LLM API keys
 * Neo4j credentials
+* MongoDB credentials
+* API keys
 * Other private configuration
 
-should **never be committed to the repository**.
-
-A `.env.example` file will be provided when environment variables become part of the project setup.
+Use the provided `.env.example` files as templates for local configuration.
 
 ---
 
@@ -469,54 +494,60 @@ A `.env.example` file will be provided when environment variables become part of
 
 ### Frontend
 
-* [x] Initial React/Vite setup
 * [x] Landing page
-* [x] Login UI
-* [x] Signup UI
-* [x] Dashboard UI
-* [x] Scheme listing interface
-* [ ] Final frontend polish
-* [ ] Responsive improvements
-* [ ] Frontend-backend integration
+* [x] Authentication UI
+* [x] Dashboard
+* [x] Scheme interface
+* [x] Profile interface
+* [x] Documents interface
+* [x] Settings
+* [x] Multilingual UI structure
+* [ ] Complete backend integration
+* [ ] Final UI polish
 
 ### Backend
 
-* [ ] FastAPI project setup
-* [ ] API architecture
-* [ ] JWT authentication
-* [ ] PostgreSQL integration
-* [ ] SQLAlchemy models
-* [ ] User/profile APIs
-* [ ] Scheme APIs
+* [x] FastAPI structure
+* [x] Authentication structure
+* [x] Scheme APIs
+* [x] User APIs
+* [x] Document APIs
+* [x] Matching services
+* [x] Scoring services
+* [x] Ollama service
+* [x] Z3 engine structure
+* [ ] Complete production database integration
+* [ ] Full frontend-backend integration
+
+### AI & Recommendation
+
+* [x] Ollama integration structure
+* [x] Matching service structure
+* [x] Scoring service structure
+* [ ] Complete LLM recommendation pipeline
+* [ ] Improved semantic matching
+* [ ] Multilingual AI processing
 
 ### Knowledge Graph
 
-* [ ] Neo4j setup
-* [ ] Scheme knowledge graph
+* [x] Neo4j integration structure
+* [ ] Scheme graph construction
 * [ ] Entity modelling
 * [ ] Relationship modelling
-* [ ] Graph-based scheme queries
+* [ ] Graph-based recommendation queries
 
-### AI / Recommendation Engine
+### Verification
 
-* [ ] LLM integration
-* [ ] Scheme information processing
-* [ ] User-profile understanding
-* [ ] Dual-score relevance mechanism
-* [ ] Scheme recommendation pipeline
-* [ ] Multilingual support
-
-### Verification Engine
-
-* [ ] Symbolic rule engine
-* [ ] Eligibility rule representation
-* [ ] Deterministic eligibility verification
-* [ ] Explainable eligibility results
+* [x] Rule engine structure
+* [x] Z3 integration structure
+* [ ] Complete eligibility rule modelling
+* [ ] Explainable verification results
+* [ ] Document-aware eligibility verification
 
 ### Deployment
 
+* [x] Docker configuration
 * [ ] Production configuration
-* [ ] Containerization
 * [ ] Cloud deployment
 * [ ] Monitoring and logging
 
@@ -524,32 +555,36 @@ A `.env.example` file will be provided when environment variables become part of
 
 # 🎯 Project Goal
 
-The goal of SIH-ESIRE is to make government schemes **easier to discover, understand, and access**.
+The goal of ESIRE is to make government schemes **easier to discover, understand, and apply for**.
 
 By combining:
 
-**LLM Intelligence + Knowledge Graphs + Dual-Score Matching + Symbolic Reasoning**
+```text
+AI Intelligence
+       +
+Scheme Matching
+       +
+Knowledge Graphs
+       +
+Document Readiness
+       +
+Deterministic Verification
+```
 
-the system aims to provide recommendations that are:
-
-* **Relevant**
-* **Personalized**
-* **Verifiable**
-* **Explainable**
-* **Accessible**
-
----
-
-# 📌 Project Status
-
-**SIH-ESIRE is currently under active development as part of the Smart India Hackathon (SIH).**
-
-The frontend is currently being developed, while the backend, databases, AI recommendation pipeline, knowledge graph, and symbolic verification engine are planned for subsequent development.
+ESIRE aims to provide users with **relevant, personalized, verifiable, and understandable scheme recommendations**.
 
 ---
 
-## 👨‍💻 Contributors
+# 👥 Team
 
-SIH-ESIRE is being developed collaboratively as part of the Smart India Hackathon.
+ESIRE is being developed collaboratively as part of the **Smart India Hackathon (SIH)**.
 
-Contributors will be added as the project progresses.
+Team members and contributors will be documented as the project progresses.
+
+---
+
+## 📌 Status
+
+**ESIRE is currently under active development for Smart India Hackathon (SIH).**
+
+The project is evolving from a frontend prototype into an integrated platform combining web technologies, backend services, databases, AI-based recommendation, knowledge graphs, and deterministic eligibility verification.
