@@ -62,3 +62,16 @@ def find_all(collection: str) -> list[dict[str, Any]]:
     if col is not None:
         return list(col.find({}))
     return list(_memory.get(collection, {}).values())
+
+
+def delete_prefix(collection: str, key_prefix: str) -> None:
+    """Delete every document in `collection` whose key starts with
+    `key_prefix` — used for account deletion, where per-user records are
+    stored under keys like 'user-{id}' or 'doc-{id}-{doc_type}'."""
+    col = _col(collection)
+    if col is not None:
+        col.delete_many({"_id": {"$regex": f"^{key_prefix}"}})
+        return
+    store = _memory.get(collection, {})
+    for key in [k for k in store if k.startswith(key_prefix)]:
+        del store[key]

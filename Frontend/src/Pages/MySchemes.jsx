@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Scheme from "../Components/Schemes";
 import { api } from "../api/client";
+import { useLanguage } from "../i18n/LanguageContext";
 
 function MySchemes() {
+  const { t } = useLanguage();
   const [state, setState] = useState({ status: "loading", schemes: [], error: "" });
 
   useEffect(() => {
@@ -13,28 +15,28 @@ function MySchemes() {
         if (!cancelled) setState({ status: "ready", schemes: data.schemes || [], error: "" });
       })
       .catch((err) => {
-        if (!cancelled) setState({ status: "error", schemes: [], error: err.message || "Could not load your schemes" });
+        if (!cancelled) setState({ status: "error", schemes: [], error: err.message || t("error") });
       });
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [t]);
 
   return (
     <section className="scheme-dashboard">
 
       <div className="dashboard-title">
-        <h1>My Schemes</h1>
-        <p>Schemes you've applied to</p>
+        <h1>{t("mySchemes")}</h1>
+        <p>{t("mySchemesSub")}</p>
       </div>
 
-      {state.status === "loading" && <p className="scheme-list-empty">Loading…</p>}
+      {state.status === "loading" && <p className="scheme-list-empty">{t("loading")}</p>}
 
       {state.status === "error" && <p className="scheme-list-empty">{state.error}</p>}
 
       {state.status === "ready" && state.schemes.length === 0 && (
         <p className="scheme-list-empty">
-          You haven't applied to any schemes yet — head back to the dashboard to explore what's available.
+          {t("noApplied")}
         </p>
       )}
 

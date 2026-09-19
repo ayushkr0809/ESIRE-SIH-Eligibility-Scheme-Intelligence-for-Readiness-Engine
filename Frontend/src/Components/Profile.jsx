@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/client";
 import { LANGUAGE_OPTIONS } from "./languages";
+import { useLanguage } from "../i18n/LanguageContext";
 import "./Profile.css";
 
 const OCCUPATION_TYPES = [
@@ -22,6 +23,8 @@ const CATEGORIES = [
   { value: "st", label: "ST" },
   { value: "obc", label: "OBC" },
   { value: "ews", label: "EWS" },
+  { value: "pwd", label: "Person with Disability" },
+  { value: "minority", label: "Minority" },
 ];
 
 const GENDERS = [
@@ -70,6 +73,7 @@ function toForm(me) {
 }
 
 const Profile = () => {
+  const { t } = useLanguage();
   const [phone, setPhone] = useState("");
   const [form, setForm] = useState(EMPTY_FORM);
   const [status, setStatus] = useState("loading");
@@ -89,14 +93,14 @@ const Profile = () => {
       })
       .catch((err) => {
         if (!cancelled) {
-          setError(err.message || "Could not load your profile");
+          setError(err.message || t("error"));
           setStatus("error");
         }
       });
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
@@ -123,7 +127,7 @@ const Profile = () => {
       await api.updateProfile(body);
       setSaved(true);
     } catch (err) {
-      setError(err.message || "Could not save your profile. Please try again.");
+      setError(err.message || t("error"));
     } finally {
       setSaving(false);
     }
@@ -134,7 +138,7 @@ const Profile = () => {
   if (status === "loading") {
     return (
       <section className="profile-page">
-        <p className="scheme-list-empty">Loading your profile…</p>
+        <p className="scheme-list-empty">{t("loading")}</p>
       </section>
     );
   }
@@ -146,15 +150,15 @@ const Profile = () => {
         <div className="profile-top">
           <div className="profile-avatar-lg">{initial}</div>
           <div>
-            <h2>{form.name || "Your profile"}</h2>
-            <p>Keep your details up to date so we can match you to the right schemes.</p>
+            <h2>{form.name || t("yourProfile")}</h2>
+            <p>{t("keepDetails")}</p>
           </div>
         </div>
 
         <form className="profile-form" onSubmit={handleSubmit}>
 
           <div className="form-group">
-            <label htmlFor="profile-name">Full name</label>
+            <label htmlFor="profile-name">{t("fullName")}</label>
             <input id="profile-name" name="name" value={form.name} onChange={handleChange} required />
           </div>
 
@@ -167,7 +171,7 @@ const Profile = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="profile-language">Preferred language</label>
+            <label htmlFor="profile-language">{t("preferredLanguage")}</label>
             <select id="profile-language" name="language" value={form.language} onChange={handleChange}>
               {LANGUAGE_OPTIONS.map((lang) => (
                 <option key={lang.code} value={lang.code}>{lang.label}</option>
@@ -178,7 +182,7 @@ const Profile = () => {
           <p className="profile-section-title">Location</p>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="profile-state">State</label>
+              <label htmlFor="profile-state">{t("state")}</label>
               <input id="profile-state" name="state" value={form.state} onChange={handleChange} placeholder="e.g. Meghalaya" />
             </div>
             <div className="form-group">
@@ -190,11 +194,11 @@ const Profile = () => {
           <p className="profile-section-title">About you</p>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="profile-age">Age</label>
+              <label htmlFor="profile-age">{t("age")}</label>
               <input id="profile-age" name="age" type="number" min="1" max="120" value={form.age} onChange={handleChange} />
             </div>
             <div className="form-group">
-              <label htmlFor="profile-gender">Gender</label>
+              <label htmlFor="profile-gender">{t("gender")}</label>
               <select id="profile-gender" name="gender" value={form.gender} onChange={handleChange}>
                 {GENDERS.map((g) => (
                   <option key={g.value} value={g.value}>{g.label}</option>
@@ -203,7 +207,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="profile-category">Category</label>
+            <label htmlFor="profile-category">{t("category")}</label>
             <select id="profile-category" name="category" value={form.category} onChange={handleChange}>
               {CATEGORIES.map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>
@@ -214,7 +218,7 @@ const Profile = () => {
           <p className="profile-section-title">Work &amp; income</p>
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="profile-occupation-type">Occupation type</label>
+              <label htmlFor="profile-occupation-type">{t("occupationType")}</label>
               <select id="profile-occupation-type" name="occupation_type" value={form.occupation_type} onChange={handleChange}>
                 {OCCUPATION_TYPES.map((o) => (
                   <option key={o.value} value={o.value}>{o.label}</option>
@@ -227,13 +231,13 @@ const Profile = () => {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="profile-income">Annual income (₹)</label>
+            <label htmlFor="profile-income">{t("annualIncome")}</label>
             <input id="profile-income" name="annual_income" type="number" min="0" value={form.annual_income} onChange={handleChange} />
           </div>
 
           <label className="form-checkbox">
             <input type="checkbox" name="is_entrepreneur" checked={form.is_entrepreneur} onChange={handleChange} />
-            I run or plan to run my own business
+            {t("entrepreneur")}
           </label>
           <label className="form-checkbox">
             <input type="checkbox" name="has_existing_business" checked={form.has_existing_business} onChange={handleChange} />
@@ -241,7 +245,7 @@ const Profile = () => {
           </label>
           <label className="form-checkbox">
             <input type="checkbox" name="has_land" checked={form.has_land} onChange={handleChange} />
-            I own agricultural land
+            {t("hasLand")}
           </label>
 
           <p className="profile-section-title">Tell us more (optional)</p>
@@ -263,9 +267,9 @@ const Profile = () => {
 
           <div className="profile-form-actions">
             <button type="submit" className="profile-save" disabled={saving}>
-              {saving ? "Saving…" : "Save changes"}
+              {saving ? "…" : t("saveChanges")}
             </button>
-            {saved && <span className="profile-saved-note">Saved</span>}
+            {saved && <span className="profile-saved-note">{t("saved")}</span>}
           </div>
 
         </form>

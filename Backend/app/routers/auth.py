@@ -7,7 +7,7 @@ from app.models import Profile, User
 from app.schemas import OtpVerifyRequest, PhoneRequest, SignupRequest
 from app.security import create_access_token
 from app.services.extractor import extract_profile
-from app.services.matching import apply_extraction, evaluate_user
+from app.services.matching import apply_extraction, evaluate_user, profile_completeness, profile_to_dict
 from app.services.otp import issue_otp, verify_otp
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
@@ -15,6 +15,7 @@ settings = get_settings()
 
 
 def _token_payload(user: User) -> dict:
+    pdata = profile_to_dict(user.profile)
     return {
         "access_token": create_access_token(user.id, user.phone),
         "token_type": "bearer",
@@ -23,6 +24,7 @@ def _token_payload(user: User) -> dict:
             "phone": user.phone,
             "name": user.name,
             "language": user.language,
+            **profile_completeness(pdata),
         },
     }
 

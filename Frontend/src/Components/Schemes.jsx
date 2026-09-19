@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { useLanguage } from "../i18n/LanguageContext";
 import "./Schemes.css";
 
 // `scheme` is a dashboard entry shaped by the backend's /api/dashboard
 // response: scheme_id, scheme_name, final_score, description, applied.
 function Scheme({ scheme }) {
+  const { t } = useLanguage();
 
   const scoreClass = scheme.final_score >= 75 ? "high" : "medium";
 
@@ -14,7 +16,7 @@ function Scheme({ scheme }) {
 
         <h3>
           {scheme.scheme_name}
-          {scheme.applied && <span className="applied-badge">Applied</span>}
+          {scheme.applied && <span className="applied-badge">{t("applied")}</span>}
         </h3>
 
         <div className={`dual-score ${scoreClass}`}>
@@ -27,7 +29,7 @@ function Scheme({ scheme }) {
         {scheme.description}
       </p>
 
-      <span className="scheme-view-link">View details →</span>
+      <span className="scheme-view-link">{t("viewDetails")}</span>
 
     </Link>
   );

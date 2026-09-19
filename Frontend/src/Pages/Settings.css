@@ -158,6 +158,89 @@
 
 
 /* =========================================
+   DANGER ZONE
+========================================= */
+
+.settings-danger-card {
+  max-width: 640px;
+  margin-top: 24px;
+
+  background: #fff5f5;
+  border: 1px solid #f3c6c2;
+  border-radius: 16px;
+
+  padding: 20px 28px;
+}
+
+.settings-danger-card h3 {
+  margin: 0 0 4px;
+  color: #b3261e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.settings-danger-card p {
+  margin: 0 0 16px;
+  color: #7a2e28;
+  font-size: 12px;
+  max-width: 440px;
+}
+
+.settings-delete-btn {
+  padding: 11px 20px;
+
+  border: 1px solid #b3261e;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #b3261e;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.settings-delete-btn:hover {
+  background: #b3261e;
+  color: #ffffff;
+}
+
+.settings-delete-confirm {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.settings-delete-confirm-btn {
+  padding: 11px 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #b3261e;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.settings-delete-confirm-btn:hover {
+  background: #8f1e18;
+}
+
+.settings-delete-confirm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* =========================================
    RESPONSIVE
 ========================================= */
 

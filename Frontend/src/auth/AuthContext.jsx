@@ -50,6 +50,11 @@ export function AuthProvider({ children }) {
         setToken(null);
         setUser(null);
       },
+      deleteAccount: async () => {
+        await api.deleteAccount();
+        setToken(null);
+        setUser(null);
+      },
       refresh: loadMe,
       setUser,
     }),

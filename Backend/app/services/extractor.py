@@ -37,13 +37,27 @@ def heuristic_extract(text: str) -> dict[str, Any]:
             data["state"] = STATE_ALIASES.get(state.lower(), state if state != "Jaipur" else "Rajasthan")
             break
 
-    income_match = re.search(r"(?:rs\.?|₹|inr)?\s*(\d[\d,]*)\s*(lakh|lakhs)?", lowered)
+    income_match = re.search(r"(?:rs\.?|₹|inr)?\s*(\d[\d,]*(?:\.\d+)?)\s*(lakh|lakhs|k)?", lowered)
     if income_match:
-        amount = int(income_match.group(1).replace(",", ""))
-        if income_match.group(2):
-            amount *= 100000
-        if amount > 1000:
-            data["annual_income"] = amount
+        try:
+            amount = float(income_match.group(1).replace(",", ""))
+        except ValueError:
+            amount = None
+        if amount is not None:
+            suffix = income_match.group(2)
+            if suffix in ("lakh", "lakhs"):
+                amount *= 100000
+            elif suffix == "k":
+                amount *= 1000
+            if amount > 1000:
+                # Look at the text right around the number to tell a monthly
+                # figure ("20000 a month") from a yearly one ("2.4 lakh a
+                # year") — without this, a monthly amount would be recorded
+                # as if it were annual, understating income by ~12x.
+                window = lowered[max(0, income_match.start() - 25) : income_match.end() + 25]
+                if re.search(r"per\s*month|/\s*month|a\s*month|\bmonthly\b|\bmonth\b", window):
+                    amount *= 12
+                data["annual_income"] = int(amount)
 
     if re.search(r"\b(farmer|kisan|farming|agriculture)\b", lowered):
         data["occupation_type"] = "farmer"

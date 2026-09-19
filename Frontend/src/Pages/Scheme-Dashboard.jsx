@@ -2,11 +2,13 @@ import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Scheme from "../Components/Schemes";
 import { api } from "../api/client";
+import { useLanguage } from "../i18n/LanguageContext";
 
 // Renders inside DashboardLayout's <Outlet /> — sidebar, header and footer
 // all live there now so every page in the dashboard shares one shell
 // instead of each page rebuilding it.
 function SchemeDashboard() {
+  const { t } = useLanguage();
   const [state, setState] = useState({ status: "loading", schemes: [], error: "" });
 
   const load = useCallback(async () => {
@@ -15,9 +17,9 @@ function SchemeDashboard() {
       const data = await api.dashboard();
       setState({ status: "ready", schemes: data.schemes || [], error: "" });
     } catch (err) {
-      setState({ status: "error", schemes: [], error: err.message || "Could not load your schemes" });
+      setState({ status: "error", schemes: [], error: err.message || t("error") });
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     load();
@@ -27,12 +29,12 @@ function SchemeDashboard() {
     <section className="scheme-dashboard">
 
       <div className="dashboard-title">
-        <h1>Recommended Schemes</h1>
-        <p>Schemes matched to your profile</p>
+        <h1>{t("recommended")}</h1>
+        <p>{t("recommendedSub")}</p>
       </div>
 
       {state.status === "loading" && (
-        <p className="scheme-list-empty">Finding schemes that match your profile…</p>
+        <p className="scheme-list-empty">{t("loading")}</p>
       )}
 
       {state.status === "error" && (
@@ -44,8 +46,7 @@ function SchemeDashboard() {
 
       {state.status === "ready" && state.schemes.length === 0 && (
         <p className="scheme-list-empty">
-          No matching schemes yet. Add a few more details to your{" "}
-          <Link to="/dashboard/profile">profile</Link> so we can find schemes you may be eligible for.
+          {t("noMatches")} <Link to="/dashboard/profile">{t("myProfile")}</Link>
         </p>
       )}
 

@@ -27,6 +27,13 @@ class Settings(BaseSettings):
     ollama_model: str = "llama3.2"
     ollama_timeout_seconds: float = 45.0
 
+    # Ollama is never used to decide eligibility (that's deterministic —
+    # see z3_engine.py) and is never called once per scheme. Only the top
+    # N schemes actually shown to the user get an AI-rewritten explanation;
+    # everything else uses the deterministic, rule-based explanation text.
+    ai_explanations_enabled: bool = True
+    ai_explanation_top_n: int = 5
+
     otp_ttl_seconds: int = 300
     otp_echo: bool = True
     otp_static_code: str = "123456"

@@ -44,6 +44,7 @@ export const api = {
   requestOtp: (phone) => request("/api/auth/otp/request", { method: "POST", body: JSON.stringify({ phone }) }),
   verifyOtp: (phone, otp) => request("/api/auth/otp/verify", { method: "POST", body: JSON.stringify({ phone, otp }) }),
   me: () => request("/api/me"),
+  deleteAccount: () => request("/api/me", { method: "DELETE" }),
   updateLanguage: (language) => request("/api/me/language", { method: "PUT", body: JSON.stringify({ language }) }),
   updateProfile: (body) => request("/api/me/profile", { method: "PUT", body: JSON.stringify(body) }),
   dashboard: (debug = false) => request(`/api/dashboard${debug ? "?debug=true" : ""}`),

@@ -19,7 +19,9 @@ def health():
         "mongo": mongo.mongo_mode,
         "neo4j": neo4j_db.graph_mode,
         "ollama": ollama_ok,
-        "ollama_model": settings.ollama_model,
+        "ollama_model_configured": settings.ollama_model,
+        "ollama_model_in_use": ollama_service.resolved_model,
+        "ollama_last_error": ollama_service.last_error,
         "display_threshold": settings.display_threshold,
         "score_weights": {
             "eligibility": settings.eligibility_weight,

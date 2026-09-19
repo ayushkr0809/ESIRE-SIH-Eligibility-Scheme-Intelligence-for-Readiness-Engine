@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { api } from "../api/client";
+import { useLanguage } from "../i18n/LanguageContext";
 import "./SchemeShow.css";
 
 function SchemeShow() {
   const { id } = useParams();
+  const { t } = useLanguage();
   const [scheme, setScheme] = useState(null);
   const [status, setStatus] = useState("loading");
   const [error, setError] = useState("");
@@ -23,14 +25,14 @@ function SchemeShow() {
       })
       .catch((err) => {
         if (!cancelled) {
-          setError(err.message || "We couldn't find that scheme.");
+          setError(err.message || t("notFound"));
           setStatus("error");
         }
       });
     return () => {
       cancelled = true;
     };
-  }, [id]);
+  }, [id, t]);
 
   async function handleApply() {
     setApplying(true);
@@ -38,7 +40,7 @@ function SchemeShow() {
       await api.apply(id);
       setScheme((prev) => (prev ? { ...prev, applied: true } : prev));
     } catch (err) {
-      setError(err.message || "Could not submit your application. Please try again.");
+      setError(err.message || t("error"));
     } finally {
       setApplying(false);
     }
@@ -47,7 +49,7 @@ function SchemeShow() {
   if (status === "loading") {
     return (
       <section className="scheme-show scheme-show-empty">
-        <p>Loading scheme details…</p>
+        <p>{t("loading")}</p>
       </section>
     );
   }
@@ -55,8 +57,8 @@ function SchemeShow() {
   if (status === "error" || !scheme) {
     return (
       <section className="scheme-show scheme-show-empty">
-        <p>{error || "We couldn't find that scheme."}</p>
-        <Link to="/dashboard" className="back-link">← Back to Dashboard</Link>
+        <p>{error || t("notFound")}</p>
+        <Link to="/dashboard" className="back-link">{t("backDashboard")}</Link>
       </section>
     );
   }
@@ -67,19 +69,19 @@ function SchemeShow() {
   return (
     <section className="scheme-show">
 
-      <Link to="/dashboard" className="back-link">← Back to Dashboard</Link>
+      <Link to="/dashboard" className="back-link">{t("backDashboard")}</Link>
 
       <div className="scheme-show-header">
         <div>
           <p className="scheme-show-department">{scheme.department}</p>
           <h1>
             {scheme.scheme_name}
-            {scheme.applied && <span className="applied-badge">Applied</span>}
+            {scheme.applied && <span className="applied-badge">{t("applied")}</span>}
           </h1>
         </div>
 
         <div className={`dual-score large ${scoreClass}`}>
-          {scheme.final_score}% match
+          {scheme.final_score}% {t("match")}
         </div>
       </div>
 
@@ -87,7 +89,7 @@ function SchemeShow() {
 
       {scheme.explanation && (
         <div className="scheme-show-card">
-          <h2>Why this was matched to you</h2>
+          <h2>{t("whyMatched")}</h2>
           <p>{scheme.explanation}</p>
         </div>
       )}
@@ -95,7 +97,7 @@ function SchemeShow() {
       <div className="scheme-show-grid">
 
         <div className="scheme-show-card">
-          <h2>Eligibility Requirements</h2>
+          <h2>{t("eligibilityRequirements")}</h2>
           <ul>
             {requirements.map((req) => (
               <li key={req}>{req}</li>
@@ -103,13 +105,13 @@ function SchemeShow() {
           </ul>
           {scheme.uncertain_conditions?.length > 0 && (
             <p className="signup-hint">
-              Still need to confirm: {scheme.uncertain_conditions.join(", ")}
+              {t("needsVerification")}: {scheme.uncertain_conditions.join(", ")}
             </p>
           )}
         </div>
 
         <div className="scheme-show-card">
-          <h2>Benefits</h2>
+          <h2>{t("benefits")}</h2>
           <ul>
             {(scheme.benefits || []).map((benefit) => (
               <li key={benefit}>{benefit}</li>
@@ -120,22 +122,22 @@ function SchemeShow() {
       </div>
 
       <div className="scheme-show-card">
-        <h2>Documents Needed</h2>
+        <h2>{t("documentsNeeded")}</h2>
         <ul className="documents-needed-list">
           {(scheme.required_documents || []).map((doc) => (
             <li key={doc}>
               {doc}
-              {scheme.missing_documents?.includes(doc) ? " — missing" : ""}
+              {scheme.missing_documents?.includes(doc) ? ` — ${t("missing")}` : ""}
             </li>
           ))}
         </ul>
         <Link to="/dashboard/documents" className="documents-link">
-          Track your documents →
+          {t("trackDocuments")}
         </Link>
       </div>
 
       <div className="scheme-show-footer">
-        <span className="scheme-deadline">Deadline: {scheme.deadline || "Open all year"}</span>
+        <span className="scheme-deadline">{t("deadline")}: {scheme.deadline || "Open all year"}</span>
 
         <button
           type="button"
@@ -143,7 +145,7 @@ function SchemeShow() {
           onClick={handleApply}
           disabled={scheme.applied || applying}
         >
-          {scheme.applied ? "Already Applied ✓" : applying ? "Submitting…" : "Apply Now"}
+          {scheme.applied ? t("alreadyApplied") : applying ? "…" : t("applyNow")}
         </button>
       </div>
 

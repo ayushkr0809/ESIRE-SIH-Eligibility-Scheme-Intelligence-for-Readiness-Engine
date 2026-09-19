@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { api } from "../api/client";
+import { useLanguage } from "../i18n/LanguageContext";
 import "./Documents.css";
 
 const READY_STATUSES = new Set(["uploaded", "extracted", "verified"]);
 
 function Documents() {
+  const { t } = useLanguage();
   const [docs, setDocs] = useState([]);
   const [status, setStatus] = useState("loading");
   const [error, setError] = useState("");
@@ -20,12 +22,12 @@ function Documents() {
         setStatus("ready");
       })
       .catch((err) => {
-        setError(err.message || "Could not load your documents");
+        setError(err.message || t("error"));
         setStatus("error");
       });
   }
 
-  useEffect(load, []);
+  useEffect(load, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function toggleUploaded(doc) {
     setBusyId(doc.id);
@@ -34,7 +36,7 @@ function Documents() {
       await api.setDocumentStatus(doc.id, ready ? "missing" : "uploaded");
       load();
     } catch (err) {
-      setError(err.message || "Could not update this document");
+      setError(err.message || t("error"));
     } finally {
       setBusyId(null);
     }
@@ -47,7 +49,7 @@ function Documents() {
       await api.uploadDocument(doc.id, file);
       load();
     } catch (err) {
-      setError(err.message || "Could not upload this document");
+      setError(err.message || t("error"));
     } finally {
       setBusyId(null);
     }
@@ -59,13 +61,13 @@ function Documents() {
     <section className="documents-page">
 
       <div className="dashboard-title">
-        <h1>Documents</h1>
-        <p>{status === "ready" ? `${uploadedCount} of ${docs.length} ready` : "Loading…"}</p>
+        <h1>{t("documents")}</h1>
+        <p>{status === "ready" ? `${uploadedCount} / ${docs.length} ${t("ofReady")}` : t("loading")}</p>
       </div>
 
       {error && <p className="scheme-list-empty">{error}</p>}
 
-      {status === "loading" && <p className="scheme-list-empty">Loading your documents…</p>}
+      {status === "loading" && <p className="scheme-list-empty">{t("loading")}</p>}
 
       {status === "ready" && docs.length === 0 && (
         <p className="scheme-list-empty">No documents are required for your current matches yet.</p>
@@ -111,7 +113,7 @@ function Documents() {
                     onClick={() => toggleUploaded(doc)}
                     disabled={isBusy}
                   >
-                    {isReady ? "Uploaded ✓" : "Mark as uploaded"}
+                    {isReady ? t("uploaded") : t("markUploaded")}
                   </button>
                 </div>
               </div>

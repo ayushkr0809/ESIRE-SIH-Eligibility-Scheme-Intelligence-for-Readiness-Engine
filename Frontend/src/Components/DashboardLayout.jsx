@@ -6,24 +6,25 @@ import { useLanguage } from "../i18n/LanguageContext";
 import { api } from "../api/client";
 import "../Pages/Scheme-Dashboard.css";
 
-// Header title/subtitle per route — keeps the header meaningful instead of
-// always saying "Scheme Discovery" no matter which page you're actually on.
-const HEADER_TEXT = {
-  "/dashboard": ["Scheme Discovery", "Find schemes matched to your profile"],
-  "/dashboard/profile": ["My Profile", "Your details and preferences"],
-  "/dashboard/documents": ["Documents", "Keep your paperwork ready for applications"],
-  "/dashboard/my-schemes": ["My Schemes", "Schemes you've applied to"],
-  "/dashboard/settings": ["Settings", "Language and notification preferences"],
-  "/dashboard/help": ["Help", "Answers and ways to reach us"],
-};
-
 const DashboardLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { logout } = useAuth();
-  const { language, setLanguage } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
 
   const [langOpen, setLangOpen] = useState(false);
+
+  // Header title/subtitle per route — keeps the header meaningful instead of
+  // always saying "Scheme Discovery" no matter which page you're actually on.
+  // Built from t() so it re-renders in the active language, not hardcoded English.
+  const HEADER_TEXT = {
+    "/dashboard": [t("schemeDiscovery"), t("schemeDiscoverySub")],
+    "/dashboard/profile": [t("myProfile"), t("keepDetails")],
+    "/dashboard/documents": [t("documents"), t("documentsSub")],
+    "/dashboard/my-schemes": [t("mySchemes"), t("mySchemesSub")],
+    "/dashboard/settings": [t("settings"), t("languageAndAlerts")],
+    "/dashboard/help": [t("help"), t("helpIntro")],
+  };
 
   // /dashboard/scheme/:id has no fixed entry above since the id varies —
   // its own page fetches and shows the real scheme name, so the shared
@@ -73,22 +74,22 @@ const DashboardLayout = () => {
 
             <NavLink to="/dashboard" end className={navItemClass}>
               <span className="nav-icon">⌂</span>
-              Dashboard
+              {t("dashboard")}
             </NavLink>
 
             <NavLink to="/dashboard/profile" className={navItemClass}>
               <span className="nav-icon">◯</span>
-              My Profile
+              {t("myProfile")}
             </NavLink>
 
             <NavLink to="/dashboard/documents" className={navItemClass}>
               <span className="nav-icon">▣</span>
-              Documents
+              {t("documents")}
             </NavLink>
 
             <NavLink to="/dashboard/my-schemes" className={navItemClass}>
               <span className="nav-icon">◇</span>
-              My Schemes
+              {t("mySchemes")}
             </NavLink>
           </div>
 
@@ -97,12 +98,12 @@ const DashboardLayout = () => {
 
             <NavLink to="/dashboard/settings" className={navItemClass}>
               <span className="nav-icon">⚙</span>
-              Settings
+              {t("settings")}
             </NavLink>
 
             <NavLink to="/dashboard/help" className={navItemClass}>
               <span className="nav-icon">?</span>
-              Help
+              {t("help")}
             </NavLink>
           </div>
 
@@ -111,7 +112,7 @@ const DashboardLayout = () => {
         <div className="sidebar-logout-wrap">
           <button type="button" className="sidebar-logout-btn" onClick={handleLogout}>
             <span className="nav-icon">⎋</span>
-            Logout
+            {t("logout")}
           </button>
         </div>
 
@@ -169,8 +170,8 @@ const DashboardLayout = () => {
         <footer className="dashboard-footer">
           <p>© 2026 ESIRE</p>
           <div className="footer-links">
-            <button type="button">Privacy</button>
-            <Link to="/dashboard/help">Help</Link>
+            <button type="button">{t("privacy")}</button>
+            <Link to="/dashboard/help">{t("help")}</Link>
             <button type="button">Contact</button>
           </div>
         </footer>
