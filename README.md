@@ -1,77 +1,194 @@
 # ESIRE — Eligibility & Scheme Intelligence for Readiness Engine
 
-**ESIRE** is an AI-powered platform designed to help users discover relevant government schemes, understand eligibility requirements, and determine their readiness to apply.
+**ESIRE** is an AI-powered platform designed to help people discover relevant government schemes, understand eligibility requirements, and determine their readiness to apply.
 
-The platform combines **LLM-based intelligence, personalized scheme matching, document readiness, and rule-based eligibility verification** to simplify access to government schemes.
+It combines **LLM-based profile understanding, personalized scheme matching, document readiness, multilingual accessibility, knowledge graphs, and rule-based eligibility verification** into a single platform.
 
-> 🚧 **Project Status:** Under Active Development — Smart India Hackathon (SIH)
-
----
-
-## 🎯 Problem
-
-Finding and applying for government schemes can be difficult because:
-
-* There are many schemes with different eligibility criteria.
-* Requirements can be complex and difficult to understand.
-* Users may not know which schemes are relevant to their situation.
-* Required documents vary between schemes.
-* Language barriers can make information less accessible.
-* Users often have to search through multiple sources to find suitable schemes.
-
-ESIRE aims to bring this process into a single, easy-to-use platform.
+> 🚧 **Project Status:** Active Development — Smart India Hackathon (SIH)
 
 ---
 
-## 💡 Solution
+## 🌟 What is ESIRE?
 
-ESIRE takes information about a user and analyzes it against available government schemes.
+Finding the right government scheme can be difficult.
 
-### Core workflow
+Users may have to:
+
+* Search through numerous government schemes
+* Understand complicated eligibility requirements
+* Determine whether a scheme applies to their situation
+* Identify the documents they need
+* Deal with language barriers
+* Search across multiple sources
+
+**ESIRE aims to simplify this process by bringing scheme discovery, profile analysis, eligibility, and document readiness together in one platform.**
+
+### Core Workflow
 
 ```text
-              User
-                │
-                ▼
-       ┌─────────────────┐
-       │  User Profile   │
-       │ & Requirements  │
-       └────────┬────────┘
-                │
-                ▼
-       ┌─────────────────┐
-       │  AI / LLM Layer │
-       │ Profile Analysis│
-       └────────┬────────┘
-                │
-                ▼
-       ┌─────────────────┐
-       │ Scheme Matching │
-       │ & Scoring       │
-       └────────┬────────┘
-                │
-                ▼
-       ┌─────────────────┐
-       │ Eligibility &   │
-       │ Document Check  │
-       └────────┬────────┘
-                │
-                ▼
-       ┌─────────────────┐
-       │ Personalized    │
-       │ Recommendations │
-       └─────────────────┘
+                         USER
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │  User Profile   │
+                  │  & Requirements │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │  AI / LLM Layer │
+                  │ Profile Analysis│
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ Scheme Matching │
+                  │   & Scoring     │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ Eligibility &   │
+                  │ Document Check  │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ Personalized    │
+                  │ Recommendations │
+                  └─────────────────┘
 ```
+
+---
+
+# 🖥️ Prototype
+
+The current prototype includes a complete frontend experience covering authentication, multilingual interaction, profile management, documents, schemes, settings, and the main dashboard.
+
+## 🌐 Multilingual Dashboard
+
+The interface is designed to support multiple languages, with the current prototype demonstrating **English, Hindi, and Manipuri** user-facing experiences.
+
+![Multilingual Dashboard](images/Multilingual%20Dashboard.png)
+
+![Hindi Landing Page](images/LandUpPageHindi.png)
+
+---
+
+## 🚀 Landing Page
+
+The landing page introduces ESIRE and its purpose of simplifying access to government schemes.
+
+![Landing Page](images/LandUpPage.png)
+
+---
+
+# 🔐 Authentication
+
+## Login
+
+Users can securely access their ESIRE account through the login interface.
+
+![Login Page](images/LoginPage.png)
+
+## Signup
+
+The signup flow guides new users through the account creation process.
+
+![Signup Page](images/SignUpPage.png)
+
+### Multi-Step Profile Setup
+
+The registration flow is designed to collect the information required for personalized scheme matching.
+
+![Signup Step 1](images/SignUpPage1.png)
+
+![Signup Step 2](images/SignUpPage2.png)
+
+---
+
+# 📊 Dashboard
+
+The dashboard provides users with a centralized view of their ESIRE experience, including scheme discovery, profile information, documents, and other platform functionality.
+
+![Dashboard](images/Multilingual%20Dashboard.png)
+
+---
+
+# 👤 Profile & AI-Based Understanding
+
+ESIRE is designed to allow users to provide information about themselves in a natural way.
+
+The AI layer can process information such as:
+
+* Personal details
+* Income
+* Location
+* Applicant category
+* Occupation
+* Business information
+* Other eligibility-related attributes
+
+For the prototype, **Ollama** can be used to run local language models.
+
+The extracted information can then be used by the matching and eligibility systems.
+
+---
+
+# 📋 Scheme Discovery
+
+The scheme interface allows users to explore government schemes and identify schemes relevant to their profile.
+
+![Schemes](images/Schemes.png)
+
+### Scheme Matching
+
+Candidate schemes can be evaluated using signals such as:
+
+* Profile compatibility
+* Eligibility requirements
+* Semantic relevance
+* Location
+* Applicant category
+* Business or occupation type
+* Required documents
+
+The resulting matching information can help users understand why a scheme may be relevant to them.
+
+---
+
+# 📄 Document Readiness
+
+ESIRE is designed to consider the documents required by individual schemes.
+
+The document system can track:
+
+* Required documents
+* Documents already provided
+* Missing documents
+* Application readiness
+
+![My Documents](images/MyDocuments.png)
+
+This allows users to understand not only **which schemes may be relevant**, but also **what they may still need before applying**.
+
+---
+
+# ⚙️ Settings
+
+Users can manage application preferences and platform settings from a dedicated settings interface.
+
+![Settings](images/Settings.png)
 
 ---
 
 # 🧠 AI & Recommendation System
 
-ESIRE is designed around a **neuro-symbolic approach**, combining AI-based understanding with deterministic verification.
+ESIRE follows a **neuro-symbolic approach**, combining AI-based understanding with deterministic verification.
 
 ### LLM Intelligence
 
-The LLM layer can be used to understand:
+The LLM layer is designed to understand:
 
 * User-provided information
 * Scheme descriptions
@@ -81,66 +198,50 @@ The LLM layer can be used to understand:
 * Natural-language queries
 * Multilingual input
 
-For the prototype, **Ollama** can be used to run local language models.
-
 ### Scheme Matching
 
-Candidate schemes can be evaluated using multiple matching signals, including:
+The recommendation system can combine multiple signals to identify potentially relevant schemes.
 
-* User profile compatibility
-* Scheme eligibility requirements
-* Semantic relevance
-* Location
-* Business or applicant category
-* Required documents
-
-The resulting scores help identify schemes that are potentially relevant to the user.
+```text
+User Profile
+     │
+     ├── Age
+     ├── Income
+     ├── Location
+     ├── Category
+     ├── Occupation
+     └── Documents
+            │
+            ▼
+      Scheme Matching
+            │
+            ▼
+        Relevance
+            │
+            ▼
+   Eligibility Verification
+```
 
 ### Rule-Based Verification
 
-After scheme matching, explicit eligibility conditions can be checked using deterministic rules.
+AI-based matching is intended to be followed by explicit eligibility checks.
 
-Examples include:
+Potential conditions include:
 
 * Age
 * Income
 * Location
 * Applicant category
 * Business type
-* Other scheme-specific conditions
+* Other scheme-specific requirements
 
-This helps separate **AI-based recommendation** from **rule-based eligibility verification**.
-
----
-
-# 📄 Document Readiness
-
-ESIRE also considers the documents required by schemes.
-
-The system can identify:
-
-* Required documents
-* Documents already provided
-* Missing documents
-* Application readiness
-
-A user can therefore understand not only **which schemes may be suitable**, but also **what is still required to apply**.
-
----
-
-# 🌐 Multilingual Support
-
-ESIRE is designed with accessibility in mind.
-
-The prototype supports a multilingual interface, with **English, Hindi, and Manipuri** planned/supported across relevant user-facing components.
-
-Users can interact with the platform through a language selected manually or based on available browser language information.
+This separates **AI-based recommendation** from **deterministic eligibility verification**.
 
 ---
 
 # 🗄️ Data Architecture
 
-ESIRE uses different data technologies for different purposes.
+Different database technologies are used for different types of information.
 
 ### PostgreSQL
 
@@ -150,17 +251,17 @@ Used for structured application data such as:
 * Profiles
 * Authentication
 * Applications
-* Other transactional data
+* Transactional data
 
 ### MongoDB
 
-Can be used for flexible or document-oriented data where appropriate.
+Used where flexible or document-oriented data structures are appropriate.
 
 ### Neo4j
 
 Planned for the scheme knowledge graph.
 
-The graph can represent relationships between:
+The graph can represent relationships such as:
 
 ```text
 User
@@ -179,128 +280,77 @@ User
            Benefit    Document   Eligibility
 ```
 
-This allows schemes and their relationships to be represented as connected entities rather than isolated records.
+This allows schemes, eligibility conditions, documents, and related entities to be represented as connected data.
 
 ---
 
 # 🏗️ System Architecture
 
 ```text
-                    ┌───────────────┐
-                    │     User      │
-                    └───────┬───────┘
-                            │
-                            ▼
-                    ┌───────────────┐
-                    │ React + Vite  │
-                    │   Frontend    │
-                    └───────┬───────┘
-                            │
-                            ▼
-                    ┌───────────────┐
-                    │    FastAPI    │
-                    │    Backend    │
-                    └───────┬───────┘
-                            │
-          ┌─────────────────┼─────────────────┐
-          │                 │                 │
-          ▼                 ▼                 ▼
-   ┌────────────┐    ┌────────────┐    ┌────────────┐
-   │ PostgreSQL │    │  MongoDB   │    │   Neo4j    │
-   │ Structured │    │ Flexible   │    │ Knowledge  │
-   │    Data    │    │    Data    │    │   Graph    │
-   └────────────┘    └────────────┘    └─────┬──────┘
-                                             │
-                                             ▼
-                                    ┌────────────────┐
-                                    │  AI / Ollama   │
-                                    │ Intelligence   │
-                                    └───────┬────────┘
-                                            │
-                                            ▼
-                                    ┌────────────────┐
-                                    │ Matching &     │
-                                    │ Scoring Engine │
-                                    └───────┬────────┘
-                                            │
-                                            ▼
-                                    ┌────────────────┐
-                                    │ Rule / Z3      │
-                                    │ Verification   │
-                                    └───────┬────────┘
-                                            │
-                                            ▼
-                                    ┌────────────────┐
-                                    │ Recommendations│
-                                    └────────────────┘
+                         ┌───────────────┐
+                         │     User      │
+                         └───────┬───────┘
+                                 │
+                                 ▼
+                         ┌───────────────┐
+                         │ React + Vite  │
+                         │   Frontend    │
+                         └───────┬───────┘
+                                 │
+                                 ▼
+                         ┌───────────────┐
+                         │    FastAPI    │
+                         │    Backend    │
+                         └───────┬───────┘
+                                 │
+               ┌─────────────────┼─────────────────┐
+               │                 │                 │
+               ▼                 ▼                 ▼
+        ┌────────────┐    ┌────────────┐    ┌────────────┐
+        │ PostgreSQL │    │  MongoDB   │    │   Neo4j    │
+        │ Structured │    │ Flexible   │    │ Knowledge  │
+        │    Data    │    │    Data    │    │   Graph    │
+        └────────────┘    └────────────┘    └─────┬──────┘
+                                                  │
+                                                  ▼
+                                         ┌────────────────┐
+                                         │  AI / Ollama   │
+                                         │ Intelligence   │
+                                         └───────┬────────┘
+                                                 │
+                                                 ▼
+                                         ┌────────────────┐
+                                         │ Matching &     │
+                                         │ Scoring Engine │
+                                         └───────┬────────┘
+                                                 │
+                                                 ▼
+                                         ┌────────────────┐
+                                         │ Rule / Z3      │
+                                         │ Verification   │
+                                         └───────┬────────┘
+                                                 │
+                                                 ▼
+                                         ┌────────────────┐
+                                         │ Recommendations│
+                                         └────────────────┘
 ```
 
 ---
 
-# 🖥️ Current Development Status
+# 🛠️ Technology Stack
 
-## Frontend
-
-### Implemented
-
-* Landing page
-* Login interface
-* Signup interface
-* Dashboard
-* Profile interface
-* Scheme listing
-* Scheme details
-* Documents interface
-* My Schemes interface
-* Settings
-* Help section
-* Protected routes
-* Authentication context
-* Multilingual UI structure
-* React component architecture
-* Responsive UI work
-
-### Technology
-
-* React
-* Vite
-* JavaScript
-* CSS
-* React Router
-
----
-
-## Backend
-
-The FastAPI backend is currently being developed.
-
-Current backend structure includes:
-
-* Authentication
-* User management
-* Scheme APIs
-* Document APIs
-* System APIs
-* Database modules
-* Matching services
-* Scoring services
-* Ollama integration
-* OTP service
-* Z3 rule engine
-* Scheme catalog
-* Document extraction
-
-### Technology
-
-* Python
-* FastAPI
-* SQLAlchemy
-* PostgreSQL
-* MongoDB
-* Neo4j
-* JWT
-* Ollama
-* Z3
+| Layer            | Technologies                 |
+| ---------------- | ---------------------------- |
+| Frontend         | React, Vite, JavaScript, CSS |
+| Backend          | Python, FastAPI, SQLAlchemy  |
+| Database         | PostgreSQL, MongoDB          |
+| Knowledge Graph  | Neo4j                        |
+| AI               | Ollama, LLMs                 |
+| Recommendation   | Profile Matching & Scoring   |
+| Verification     | Rule Engine, Z3              |
+| Authentication   | JWT                          |
+| Containerization | Docker                       |
 
 ---
 
@@ -361,27 +411,23 @@ ESIRE/
 │   ├── package-lock.json
 │   └── vite.config.js
 │
+├── images/
+│   ├── LandUpPage.png
+│   ├── LandUpPageHindi.png
+│   ├── LoginPage.png
+│   ├── Multilingual Dashboard.png
+│   ├── MyDocuments.png
+│   ├── Schemes.png
+│   ├── Settings.png
+│   ├── SignUpPage.png
+│   ├── SignUpPage1.png
+│   └── SignUpPage2.png
+│
 ├── .env.example
 ├── .gitignore
 ├── docker-compose.yml
 └── README.md
 ```
-
----
-
-# 🛠️ Technology Stack
-
-| Layer            | Technologies                 |
-| ---------------- | ---------------------------- |
-| Frontend         | React, Vite, JavaScript, CSS |
-| Backend          | Python, FastAPI, SQLAlchemy  |
-| Database         | PostgreSQL, MongoDB          |
-| Knowledge Graph  | Neo4j                        |
-| AI               | Ollama, LLMs                 |
-| Recommendation   | Profile Matching & Scoring   |
-| Verification     | Rule Engine, Z3              |
-| Authentication   | JWT                          |
-| Containerization | Docker                       |
 
 ---
 
@@ -419,7 +465,7 @@ npm install
 npm run dev
 ```
 
-The Vite development server will provide a local URL, usually:
+The Vite development server will normally be available at:
 
 ```text
 http://localhost:5173
@@ -486,13 +532,13 @@ Examples include:
 * API keys
 * Other private configuration
 
-Use the provided `.env.example` files as templates for local configuration.
+Use `.env.example` as a template for local configuration.
 
 ---
 
 # 🗺️ Roadmap
 
-### Frontend
+## Frontend
 
 * [x] Landing page
 * [x] Authentication UI
@@ -505,21 +551,21 @@ Use the provided `.env.example` files as templates for local configuration.
 * [ ] Complete backend integration
 * [ ] Final UI polish
 
-### Backend
+## Backend
 
 * [x] FastAPI structure
 * [x] Authentication structure
 * [x] Scheme APIs
 * [x] User APIs
 * [x] Document APIs
-* [x] Matching services
-* [x] Scoring services
-* [x] Ollama service
+* [x] Matching service structure
+* [x] Scoring service structure
+* [x] Ollama integration
 * [x] Z3 engine structure
 * [ ] Complete production database integration
 * [ ] Full frontend-backend integration
 
-### AI & Recommendation
+## AI & Recommendation
 
 * [x] Ollama integration structure
 * [x] Matching service structure
@@ -528,7 +574,7 @@ Use the provided `.env.example` files as templates for local configuration.
 * [ ] Improved semantic matching
 * [ ] Multilingual AI processing
 
-### Knowledge Graph
+## Knowledge Graph
 
 * [x] Neo4j integration structure
 * [ ] Scheme graph construction
@@ -536,7 +582,7 @@ Use the provided `.env.example` files as templates for local configuration.
 * [ ] Relationship modelling
 * [ ] Graph-based recommendation queries
 
-### Verification
+## Verification
 
 * [x] Rule engine structure
 * [x] Z3 integration structure
@@ -544,7 +590,7 @@ Use the provided `.env.example` files as templates for local configuration.
 * [ ] Explainable verification results
 * [ ] Document-aware eligibility verification
 
-### Deployment
+## Deployment
 
 * [x] Docker configuration
 * [ ] Production configuration
@@ -555,9 +601,9 @@ Use the provided `.env.example` files as templates for local configuration.
 
 # 🎯 Project Goal
 
-The goal of ESIRE is to make government schemes **easier to discover, understand, and apply for**.
+ESIRE aims to make government schemes **easier to discover, understand, and prepare for**.
 
-By combining:
+The platform brings together:
 
 ```text
 AI Intelligence
@@ -569,9 +615,11 @@ Knowledge Graphs
 Document Readiness
        +
 Deterministic Verification
+       +
+Multilingual Accessibility
 ```
 
-ESIRE aims to provide users with **relevant, personalized, verifiable, and understandable scheme recommendations**.
+into a single platform designed around the user's profile and requirements.
 
 ---
 
@@ -587,4 +635,8 @@ Team members and contributors will be documented as the project progresses.
 
 **ESIRE is currently under active development for Smart India Hackathon (SIH).**
 
-The project is evolving from a frontend prototype into an integrated platform combining web technologies, backend services, databases, AI-based recommendation, knowledge graphs, and deterministic eligibility verification.
+The project is evolving from a functional frontend prototype into an integrated platform combining:
+
+**React + FastAPI + PostgreSQL + MongoDB + Neo4j + Ollama + Rule-Based Verification**
+
+with the goal of creating a personalized and accessible government scheme discovery experience.
