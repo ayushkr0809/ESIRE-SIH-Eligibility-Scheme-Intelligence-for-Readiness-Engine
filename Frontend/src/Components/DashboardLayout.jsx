@@ -63,8 +63,8 @@ const DashboardLayout = () => {
       <aside className="sidebar">
 
         <div className="sidebar-logo">
-          <h1>ESIRE</h1>
-          <p>Entrepreneur Scheme Intelligence &amp; Readiness Engine</p>
+          <h1>PAANGBA</h1>
+          <p>Welfare Scheme Assistance Navigator</p>
         </div>
 
         <nav className="sidebar-nav">
@@ -168,7 +168,7 @@ const DashboardLayout = () => {
         </div>
 
         <footer className="dashboard-footer">
-          <p>© 2026 ESIRE</p>
+          <p>© 2026 PAANGBA</p>
           <div className="footer-links">
             <button type="button">{t("privacy")}</button>
             <Link to="/dashboard/help">{t("help")}</Link>
